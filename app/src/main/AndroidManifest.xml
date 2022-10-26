@@ -16,6 +16,13 @@
         android:theme="@style/Theme.Reeu_premium"
         tools:targetApi="31">
         <activity
+            android:name=".Eventos"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".EventosPublicos"
             android:exported="false">
             <meta-data
