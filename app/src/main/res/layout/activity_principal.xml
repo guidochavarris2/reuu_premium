@@ -43,27 +43,23 @@
                 android:textSize="21sp"
                 android:layout_marginTop="16dp"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+
+            <Button
+                android:id="@+id/btnempezar"
                 android:layout_width="300dp"
                 android:layout_height="60dp"
+                android:text="Empezar"
                 android:layout_marginTop="48dp"
-                android:background="@drawable/orange_background"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:backgroundTint="#F44336"
                 android:elevation="3dp"
-                android:layout_gravity="center_horizontal">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:textSize="21sp"
-                    android:textStyle="bold"
-                    android:textColor="#ffffff"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Comenzar"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                android:layout_gravity="center_horizontal"/>
 
 
         </LinearLayout>
