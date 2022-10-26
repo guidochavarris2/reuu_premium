@@ -421,7 +421,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Home"
+                        android:text="Inicio"
                         android:textAlignment="center"
                         android:textColor="#686767"
                         android:textSize="12sp" />
@@ -446,7 +446,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Profile"
+                        android:text="Perfil"
                         android:textAlignment="center"
                         android:textColor="#686767"
                         android:textSize="12sp" />
@@ -496,7 +496,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Support"
+                        android:text="Entradas"
                         android:textAlignment="center"
                         android:textColor="#686767"
                         android:textSize="12sp" />
@@ -521,7 +521,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
-                        android:text="Settings"
+                        android:text="Config"
                         android:textAlignment="center"
                         android:textColor="#686767"
                         android:textSize="12sp" />
@@ -534,7 +534,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="#FF5E00"
-            android:src="@drawable/shopping_cart"
+            android:src="@drawable/agregar"
             app:backgroundTint="#FF5E00"
             app:layout_anchor="@id/app_bar"
             app:maxImageSize="30dp"
