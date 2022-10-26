@@ -63,7 +63,7 @@
                     android:singleLine="true" />
 
                 <EditText
-                    android:id="@+id/edtDni"
+                    android:id="@+id/editTextDni"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
@@ -89,7 +89,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/edtNombre"
+                android:id="@+id/editTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
@@ -114,7 +114,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/editTextApellidos"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
@@ -139,7 +139,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
@@ -164,7 +164,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
@@ -209,26 +209,23 @@
 
             </RadioGroup>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <Button
+                android:id="@+id/buttonRegister"
                 android:layout_width="300dp"
-                android:layout_marginTop="-10dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/orange_background"
-                android:layout_height="50dp">
+                android:layout_height="60dp"
+                android:text="REGISTER"
+                android:layout_marginTop="0dp"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:backgroundTint="#F44336"
+                android:elevation="3dp"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"
+                android:layout_gravity="center_horizontal"/>
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SignUp"
-                    android:textStyle="bold"
-                    android:textColor="#ffffff"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/tvlogin"
                 android:layout_width="match_parent"
