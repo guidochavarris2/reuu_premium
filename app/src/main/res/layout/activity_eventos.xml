@@ -49,104 +49,15 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
-                <LinearLayout
+                <ListView
+                    android:id="@+id/lisMostraMisEventos"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
 
-                    <!-- modelo de etiqueta -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/white_background"
-                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="75dp"
-                                android:layout_height="75dp"
-                                android:layout_margin="8dp"
-                                android:background="@drawable/purple_background">
-                                <!-- imagen?? -->
-                                <ImageView
-                                    android:id="@+id/imageViewfwefew"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
-                                    app:srcCompat="@drawable/ic_1" />
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:id="@+id/hora_fiesta"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="10dp"
-                                    android:text="hora_fiesta"
-                                    android:textColor="#7868e5"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"/>
-                                <TextView
-                                    android:id="@+id/none"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="10dp"
-                                    android:text="fecha_fiesta"
-                                    android:textColor="#7868e5"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    app:layout_constraintEnd_toEndOf="parent"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"/>
-                            </LinearLayout>
-                        </LinearLayout>
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:background="@drawable/purple2_background">
-
-                            <TextView
-                                android:id="@+id/Nombre_fiesta"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Nombre_fiesta"
-                                android:textColor="#7868e5"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <ImageView
-                                android:id="@+id/imageViewfewfw"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_dot" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </LinearLayout>
-                    <!-- modelo de etiqueta -->
-                </LinearLayout>
+                    android:layout_height="wrap_content" />
             </ScrollView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -169,105 +80,18 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
-            <!-- conevertir en un reciclerview o algo -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:orientation="vertical">
 
-                <!-- modelo de etiqueta -->
-                <LinearLayout
+                <ListView
+                    android:id="@+id/lisMostrarEntradas"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/white_background"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_margin="8dp"
-                            android:background="@drawable/purple_background">
-                            <!-- imagen?? -->
-                            <ImageView
-                                android:id="@+id/imageView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_1" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/hora_fiestae"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:text="hora_fiesta"
-                                android:textColor="#7868e5"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"/>
-                            <TextView
-                                android:id="@+id/fecha_e"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:text="fecha_fiesta"
-                                android:textColor="#7868e5"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/purple2_background">
 
-                        <TextView
-                            android:id="@+id/Nombre_fiestae"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Nombre_fiesta"
-                            android:textColor="#7868e5"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content" />
 
-                        <ImageView
-                            android:id="@+id/image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_dot" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-                <!-- modelo de etiqueta -->
-            </LinearLayout>
+
             </ScrollView>
         </LinearLayout>
     </ScrollView>
