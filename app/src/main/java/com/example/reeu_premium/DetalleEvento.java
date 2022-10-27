@@ -10,7 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import javax.crypto.Cipher;
@@ -51,10 +60,13 @@ public class DetalleEvento extends AppCompatActivity {
         AforoMax.setEnabled(false);
         Aforo.setEnabled(false);
 
+
+
         ingreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
+                    //buscarEvento("{tu link}"+edtCodigo.getText()+"");
                     combo = dato1 + dato2;
                     combo = encriptar(combo);
 
@@ -78,5 +90,38 @@ public class DetalleEvento extends AppCompatActivity {
         cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
         byte[] encriptado = cipher.doFinal(code.getBytes());
         return new String(encriptado);
+    }
+
+    //usuario logueado DNI
+    private void buscarEvento(String URL) {
+        /**
+        if(SharedPrefManager.getInstance(this).isLoggedIn()) {
+            User user = SharedPrefManager.getInstance(this).getUser();
+            dato1 = user.getDni();
+        }**/
+        JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i= 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        edtEvento.setText(jsonObject.getString("{tu atributo}"));
+                        edtDescripcion.setText(jsonObject.getString("{tu atributo}"));
+                        edtFecha.setText(jsonObject.getString("{tu atributo}"));
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        }
+        );
+        requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 }

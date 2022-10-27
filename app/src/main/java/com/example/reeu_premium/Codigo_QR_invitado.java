@@ -14,6 +14,7 @@ public class Codigo_QR_invitado extends AppCompatActivity {
     public void recibirqr() {
         Bundle extras = getIntent().getExtras();
         String hash = extras.getString("hashqr");
+
         ImageView imgQR = findViewById(R.id.imageQR);
 
         try {
