@@ -16,7 +16,7 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-public class DetalleEvento extends AppCompatActivity {
+public class CrearEvento extends AppCompatActivity {
 
     private int año1, mes2, dia3, hora4, minu5;
     static final int DATE_ID = 0;
@@ -27,7 +27,7 @@ public class DetalleEvento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_evento);
+        setContentView(R.layout.activity_crear_evento);
 
         año1 = c.get(Calendar.YEAR);
         mes2 = c.get(Calendar.MONTH);
@@ -54,7 +54,7 @@ public class DetalleEvento extends AppCompatActivity {
         Cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetalleEvento.this, Buscador.class);
+                Intent intent = new Intent(CrearEvento.this, Buscador.class);
                 startActivity(intent);
             }
         });

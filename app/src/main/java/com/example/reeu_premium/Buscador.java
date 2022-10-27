@@ -21,7 +21,7 @@ public class Buscador extends AppCompatActivity {
         Crear_Evento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Buscador.this, DetalleEvento.class);
+                Intent intent = new Intent(Buscador.this, CrearEvento.class);
                 startActivity(intent);
             }
         });

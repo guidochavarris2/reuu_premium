@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Reeu_premium"
         tools:targetApi="31">
         <activity
-            android:name=".DetalleEvento"
+            android:name=".CrearEvento"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
