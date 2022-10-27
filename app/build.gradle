@@ -42,6 +42,7 @@ dependencies {
     //refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-
+    //codigo QR
+    implementation "com.journeyapps:zxing-android-embedded:4.2.0"
 
 }

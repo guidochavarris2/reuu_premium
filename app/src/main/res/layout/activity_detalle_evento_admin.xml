@@ -262,6 +262,7 @@
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:backgroundTint="#F44336"
                 android:elevation="3dp"
                 android:text="Validar Ingreso"
