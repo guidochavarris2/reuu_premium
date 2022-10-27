@@ -13,13 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- Navbar o como se llame -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,10 +48,10 @@
                     android:id="@+id/txtevent_public"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/white_background"
                     android:text="  Evento Publico  "
                     android:textColor="#fe5b52"
                     android:textSize="40dp"
-                    android:background="@drawable/white_background"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -55,10 +59,11 @@
             <!-- conevertir en un reciclerview o algo -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="70dp"
+                android:layout_height="573dp"
                 android:layout_marginLeft="-25dp"
-                android:layout_marginRight="-25dp"
-                android:layout_height="573dp">
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="-25dp">
+
                 <ListView
                     android:id="@+id/lisMostrar"
                     android:layout_width="match_parent"
@@ -66,7 +71,6 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-    <!-- Navbar o como se llame -->
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"

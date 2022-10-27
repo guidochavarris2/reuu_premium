@@ -52,6 +52,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".Lista_de_invitados"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Buscador"
             android:exported="false">
             <meta-data
