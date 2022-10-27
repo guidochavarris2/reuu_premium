@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button siguiente;
 
-    Button buttonLogout;
+    ImageView buttonLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +56,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         queue = Volley.newRequestQueue(this);
         //buttonLogout = (Button)findViewById(R.id.buttonLogout);
 
+        buttonLogout = (ImageView)findViewById(R.id.imagenEntrada);
+
         listView=findViewById(R.id.lisMostrar);
         adapter2= new Adapter2(this,usuariosArrayList2);
         listView.setAdapter(adapter2);
+
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Eventos.class);
+                startActivity(intent);
+            }
+        });
 
         /*buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
