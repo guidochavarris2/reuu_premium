@@ -16,6 +16,20 @@
         android:theme="@style/Theme.Reeu_premium"
         tools:targetApi="31">
         <activity
+            android:name=".Perfil"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Configuracion"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Buscador"
             android:exported="false">
             <meta-data
