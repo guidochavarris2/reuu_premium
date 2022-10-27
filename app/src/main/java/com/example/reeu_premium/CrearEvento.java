@@ -110,7 +110,7 @@ public class CrearEvento extends AppCompatActivity {
     private void cargarImagen() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent, "Seleccione la aplicación"),10);
+        startActivityForResult(intent.createChooser(intent, "Seleccione la app"),10);
     }
 
     @Override
