@@ -91,14 +91,18 @@ public class DetalleEvento extends AppCompatActivity {
         byte[] encriptado = cipher.doFinal(code.getBytes());
         return new String(encriptado);
     }
-
+/**
     //usuario logueado DNI
     private void buscarEvento(String URL) {
-        /**
+
         if(SharedPrefManager.getInstance(this).isLoggedIn()) {
             User user = SharedPrefManager.getInstance(this).getUser();
             dato1 = user.getDni();
-        }**/
+        } else {
+            Intent  intent = new Intent(DetalleEvento.this,Login.class);
+            startActivity(intent);
+            finish();
+        }
         JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -123,5 +127,5 @@ public class DetalleEvento extends AppCompatActivity {
         );
         requestQueue= Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
-    }
+    }**/
 }
