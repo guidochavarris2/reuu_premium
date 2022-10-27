@@ -9,19 +9,19 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/background_login" />
+        app:srcCompat="@drawable/reeulogo" />
 
     <TextView
         android:id="@+id/txtSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Sign Up"
         android:textColor="#fe5b52"
         android:textSize="40dp"
