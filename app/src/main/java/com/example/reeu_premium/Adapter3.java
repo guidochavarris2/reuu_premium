@@ -1,7 +1,7 @@
 package com.example.reeu_premium;
 
 
-import static com.example.reeu_premium.R.layout.listados_home;
+import static com.example.reeu_premium.R.layout.listados_home2;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,7 +19,7 @@ public class Adapter3 extends ArrayAdapter<Usuarios> {
     List<Usuarios> arrayusuarios;
 
     public Adapter3(@NonNull Context context, List<Usuarios>arrayusuarios) {
-        super(context, listados_home,arrayusuarios);
+        super(context, listados_home2,arrayusuarios);
         this.context=context;
         this.arrayusuarios = arrayusuarios;
     }
@@ -27,9 +27,9 @@ public class Adapter3 extends ArrayAdapter<Usuarios> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(listados_home, null,true);
-        TextView txtID = view.findViewById(R.id.txtid);
-        TextView txtNombre = view.findViewById(R.id.txtnombre);
+        View view = LayoutInflater.from(parent.getContext()).inflate(listados_home2, null,true);
+        TextView txtID = view.findViewById(R.id.hora_fiesta);
+        TextView txtNombre = view.findViewById(R.id.Nombre_fiesta);
 
         txtID.setText(arrayusuarios.get(position).getId());
         txtNombre.setText(arrayusuarios.get(position).getCodigo());
