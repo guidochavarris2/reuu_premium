@@ -5,6 +5,7 @@ import static com.android.volley.Request.Method.GET;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageView buttonLogout;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //buttonLogout = (Button)findViewById(R.id.buttonLogout);
 
         buttonLogout = (ImageView)findViewById(R.id.imagenEntrada);
+        FloatingActionButton Boton_Agregar = findViewById(R.id.agregar_evento);
 
         listView=findViewById(R.id.lisMostrar);
         adapter2= new Adapter2(this,usuariosArrayList2);
@@ -66,6 +70,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Eventos.class);
+                startActivity(intent);
+            }
+        });
+        Boton_Agregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Buscador.class);
                 startActivity(intent);
             }
         });
