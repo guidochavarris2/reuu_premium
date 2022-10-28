@@ -52,15 +52,7 @@ public class DetalleEvento extends AppCompatActivity {
 
         Button ingreso = findViewById(R.id.btnIngreso);
 
-        //EditText Deshabilitados
-        Descripcion.setEnabled(false);
-        Ubicacion.setEnabled(false);
-        Fecha.setEnabled(false);
-        Hora.setEnabled(false);
-        AforoMax.setEnabled(false);
-        Aforo.setEnabled(false);
-
-
+        recibirdetalles();
 
         ingreso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,5 +96,46 @@ public class DetalleEvento extends AppCompatActivity {
             finish();
         }
 
+    }
+    public void recibirdetalles() {
+        Bundle extras = getIntent().getExtras();
+        String id_evento = extras.getString("envio1");
+        String nombre = extras.getString("envio2");
+        String descripcion = extras.getString("envio3");
+        String aforo = extras.getString("envio4");
+        String fecha = extras.getString("envio5");
+        String hora = extras.getString("envio6");
+        String ubicacion = extras.getString("envio7");
+        String imagen = extras.getString("envio8");
+        String estado = extras.getString("envio9");
+        String tipo_evento = extras.getString("envio10");
+        String id_usuario = extras.getString("envio11");
+
+        TextView nombree = findViewById(R.id.txtnombreEvento);
+        EditText descripcione = findViewById(R.id.txtDescripcion);
+        EditText ubicacione = findViewById(R.id.txtubicacion);
+        EditText fechae = findViewById(R.id.txtfecha);
+        EditText horae = findViewById(R.id.txthora);
+        EditText aforomaxe = findViewById(R.id.txtaforomax);
+        EditText aforoe = findViewById(R.id.txtaforo);
+        TextView estadoe = findViewById(R.id.txtEstadoEvento);
+        TextView codigoe = findViewById(R.id.txtCodigo);
+        nombree.setText(nombre);
+        descripcione.setText(descripcion);
+        ubicacione.setText(ubicacion);
+        fechae.setText(fecha);
+        horae.setText(hora);
+        aforomaxe.setText(aforo);
+        aforoe.setText("0");
+        estadoe.setText(estado);
+        codigoe.setText(id_evento);
+
+        //EditText Deshabilitados
+        descripcione.setEnabled(false);
+        ubicacione.setEnabled(false);
+        fechae.setEnabled(false);
+        horae.setEnabled(false);
+        aforomaxe.setEnabled(false);
+        aforoe.setEnabled(false);
     }
 }
