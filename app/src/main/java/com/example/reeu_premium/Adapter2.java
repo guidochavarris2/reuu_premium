@@ -28,10 +28,12 @@ public class Adapter2 extends ArrayAdapter<Usuarios> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext()).inflate(listados_home, null,true);
         TextView txtID = view.findViewById(R.id.txtid);
-        TextView txtNombre = view.findViewById(R.id.txtnombre);
+        TextView txtNombre = view.findViewById(R.id.txtubicacion);
+        //TextView txtCategoria = view.findViewById(R.id.txtubicacion);
 
         txtID.setText(arrayusuarios.get(position).getId());
         txtNombre.setText(arrayusuarios.get(position).getCodigo());
+        //txtCategoria.setText(arrayusuarios.get(position).getCategoria());
 
         return view;
     }

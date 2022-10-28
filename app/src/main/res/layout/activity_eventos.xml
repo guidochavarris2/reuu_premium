@@ -45,13 +45,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <!-- conevertir en un reciclerview o algo -->
+            <!-- conevertir en un reciclerview o algo lisMostraMisEventos-->
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
                 <ListView
                     android:id="@+id/lisMostraMisEventos"
                     android:layout_width="match_parent"
+
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
 

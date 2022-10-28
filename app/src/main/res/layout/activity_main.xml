@@ -53,29 +53,20 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- conevertir en un reciclerview o algo -->
-            <RelativeLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_marginTop="70dp"
-
-                android:layout_marginLeft="-25dp"
-                android:layout_marginRight="-25dp"
-
-                android:layout_height="573dp"
-               >
-
-
+                android:layout_height="250dp">
                 <ListView
                     android:id="@+id/lisMostrar"
                     android:layout_width="match_parent"
+
                     android:layout_marginLeft="1dp"
                     android:layout_marginRight="1dp"
 
 
 
                     android:layout_height="wrap_content" />
-
-
-            </RelativeLayout>
+            </ScrollView>
 
 
         </LinearLayout>
