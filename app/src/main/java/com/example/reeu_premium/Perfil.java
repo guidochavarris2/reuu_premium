@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Perfil extends AppCompatActivity implements View.OnClickListener{
 
+    TextView userName,email,dni,gender;
     Button btnLogout;
 
     @Override
@@ -17,8 +19,19 @@ public class Perfil extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_perfil);
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
 
+            userName = findViewById(R.id.textViewUsername);
+            email = findViewById(R.id.textViewEmail);
+            dni = findViewById(R.id.textViewDNI);
+            gender = findViewById(R.id.textViewGender);
+
+
             btnLogout = findViewById(R.id.button2);
             User user = SharedPrefManager.getInstance(this).getUser();
+
+            dni.setText(user.getDni());
+            email.setText(user.getEmail());
+            gender.setText(user.getGender());
+            userName.setText(user.getName());
 
 
 

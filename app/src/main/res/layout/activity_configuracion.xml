@@ -61,7 +61,7 @@
             android:layout_height="80dp"
             android:layout_marginTop="20dp"
             android:backgroundTint="#B4F44336"
-            android:text="PERFIL"
+            android:text="EDITAR PERFIL"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold"
