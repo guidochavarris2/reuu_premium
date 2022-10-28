@@ -65,7 +65,7 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:cornerRadius="10dp" />
+            app:cornerRadius="0dp" />
 
         <Button
             android:id="@+id/tbnTerminos"
