@@ -132,9 +132,13 @@ public class Registro extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
+                        //System.out.println(response);
+
                         try {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
+                            System.out.println("Qbjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+                            //System.out.println(obj);
                             //if no error in response
                             if (!obj.getBoolean("error")) {
                                 Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();

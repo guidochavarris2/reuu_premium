@@ -39,7 +39,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <EditText
-                android:id="@+id/txtnombre"
+                android:id="@+id/txtnombreEvento"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="16dp"
@@ -54,7 +54,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
             <EditText
-                android:id="@+id/editTextTextPersonName4"
+                android:id="@+id/txtDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="16dp"
@@ -70,7 +70,7 @@
                 android:textStyle="bold|italic" />
 
             <EditText
-                android:id="@+id/txtubicacion"
+                android:id="@+id/txtUbicacion"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginTop="16dp"
@@ -134,7 +134,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/txtaforo"
+                    android:id="@+id/txtAforo"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="55dp"
@@ -212,7 +212,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <Button
-                    android:id="@+id/buttonRegister"
+                    android:id="@+id/buttonRegister2"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="60dp"
