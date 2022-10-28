@@ -30,7 +30,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class DetalleEvento extends AppCompatActivity {
 
     String dato1;
-    String dato2 = "454564";
+    String dato2;
     String combo;
     private static final String AES = "AES";
     @SuppressLint("MissingInflatedId")
@@ -47,6 +47,7 @@ public class DetalleEvento extends AppCompatActivity {
 
         TextView Estado = findViewById(R.id.txtEstadoEvento);
         TextView Nombre = findViewById(R.id.txtnombreEvento);
+        TextView Codigo = findViewById(R.id.txtCodigo);
 
         ImageView imagen = findViewById(R.id.imageEvento);
 
@@ -58,10 +59,10 @@ public class DetalleEvento extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    //buscarEvento("{tu link}"+edtCodigo.getText()+"");
+                    buscarIDEvento();
+                    dato2 = Codigo.getText().toString().trim();
                     combo = dato1 + dato2;
                     combo = encriptar(combo);
-
 
                     Intent i = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);
                     i.putExtra("hashqr", combo);
@@ -85,7 +86,7 @@ public class DetalleEvento extends AppCompatActivity {
     }
 
     //usuario logueado DNI
-    private void buscarIDEvento(String URL) {
+    private void buscarIDEvento() {
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()) {
             User user = SharedPrefManager.getInstance(this).getUser();
