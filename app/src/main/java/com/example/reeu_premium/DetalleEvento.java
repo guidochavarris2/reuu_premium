@@ -30,7 +30,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class DetalleEvento extends AppCompatActivity {
 
     String dato1;
-    String dato2 = "454564";
+    String dato2;
     String combo;
     private static final String AES = "AES";
     @SuppressLint("MissingInflatedId")
@@ -47,29 +47,22 @@ public class DetalleEvento extends AppCompatActivity {
 
         TextView Estado = findViewById(R.id.txtEstadoEvento);
         TextView Nombre = findViewById(R.id.txtnombreEvento);
+        TextView Codigo = findViewById(R.id.txtCodigo);
 
         ImageView imagen = findViewById(R.id.imageEvento);
 
         Button ingreso = findViewById(R.id.btnIngreso);
 
-        //EditText Deshabilitados
-        Descripcion.setEnabled(false);
-        Ubicacion.setEnabled(false);
-        Fecha.setEnabled(false);
-        Hora.setEnabled(false);
-        AforoMax.setEnabled(false);
-        Aforo.setEnabled(false);
-
-
+        recibirdetalles();
 
         ingreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    //buscarEvento("{tu link}"+edtCodigo.getText()+"");
+                    buscarIDEvento();
+                    dato2 = Codigo.getText().toString().trim();
                     combo = dato1 + dato2;
                     combo = encriptar(combo);
-
 
                     Intent i = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);
                     i.putExtra("hashqr", combo);
@@ -91,9 +84,9 @@ public class DetalleEvento extends AppCompatActivity {
         byte[] encriptado = cipher.doFinal(code.getBytes());
         return new String(encriptado);
     }
-/**
+
     //usuario logueado DNI
-    private void buscarEvento(String URL) {
+    private void buscarIDEvento() {
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()) {
             User user = SharedPrefManager.getInstance(this).getUser();
@@ -103,29 +96,47 @@ public class DetalleEvento extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                JSONObject jsonObject = null;
-                for (int i= 0; i < response.length(); i++) {
-                    try {
-                        jsonObject = response.getJSONObject(i);
-                        edtEvento.setText(jsonObject.getString("{tu atributo}"));
-                        edtDescripcion.setText(jsonObject.getString("{tu atributo}"));
-                        edtFecha.setText(jsonObject.getString("{tu atributo}"));
-                    } catch (JSONException e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
-            }
-        }
-        );
-        requestQueue= Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-    }**/
+
+    }
+    public void recibirdetalles() {
+        Bundle extras = getIntent().getExtras();
+        String id_evento = extras.getString("envio1");
+        String nombre = extras.getString("envio2");
+        String descripcion = extras.getString("envio3");
+        String aforo = extras.getString("envio4");
+        String fecha = extras.getString("envio5");
+        String hora = extras.getString("envio6");
+        String ubicacion = extras.getString("envio7");
+        String imagen = extras.getString("envio8");
+        String estado = extras.getString("envio9");
+        String tipo_evento = extras.getString("envio10");
+        String id_usuario = extras.getString("envio11");
+
+        TextView nombree = findViewById(R.id.txtnombreEvento);
+        EditText descripcione = findViewById(R.id.txtDescripcion);
+        EditText ubicacione = findViewById(R.id.txtubicacion);
+        EditText fechae = findViewById(R.id.txtfecha);
+        EditText horae = findViewById(R.id.txthora);
+        EditText aforomaxe = findViewById(R.id.txtaforomax);
+        EditText aforoe = findViewById(R.id.txtaforo);
+        TextView estadoe = findViewById(R.id.txtEstadoEvento);
+        TextView codigoe = findViewById(R.id.txtCodigo);
+        nombree.setText(nombre);
+        descripcione.setText(descripcion);
+        ubicacione.setText(ubicacion);
+        fechae.setText(fecha);
+        horae.setText(hora);
+        aforomaxe.setText(aforo);
+        aforoe.setText("0");
+        estadoe.setText(estado);
+        codigoe.setText(id_evento);
+
+        //EditText Deshabilitados
+        descripcione.setEnabled(false);
+        ubicacione.setEnabled(false);
+        fechae.setEnabled(false);
+        horae.setEnabled(false);
+        aforomaxe.setEnabled(false);
+        aforoe.setEnabled(false);
+    }
 }

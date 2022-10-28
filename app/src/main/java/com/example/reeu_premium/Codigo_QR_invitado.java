@@ -15,6 +15,7 @@ public class Codigo_QR_invitado extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String hash = extras.getString("hashqr");
 
+        //CREAR QR
         ImageView imgQR = findViewById(R.id.imageQR);
 
         try {
@@ -25,6 +26,7 @@ public class Codigo_QR_invitado extends AppCompatActivity {
         }catch (Exception e) {
             e.printStackTrace();
         }
+        //CREAR QR
     }
 
     @Override

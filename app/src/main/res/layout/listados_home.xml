@@ -14,19 +14,8 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-
-            android:orientation="vertical" >
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/box_container"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
 
@@ -34,12 +23,14 @@
 
             <LinearLayout
                 android:id="@+id/single_post_circuito_linearbox"
-                android:layout_width="match_parent"
-                android:layout_height="107dp"
-                android:layout_margin="1dp"
-                android:background="@drawable/reu"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/l_reunion5"
                 android:orientation="horizontal"
-                android:padding="5dp">
+                android:padding="5dp"
+                android:radius="10dp"
+                >
 
 
                 <LinearLayout
@@ -52,10 +43,8 @@
                         android:id="@+id/txtid2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:background="@drawable/desconocido"
-
-
+                        android:layout_marginLeft="15dp"
+                        android:background="@drawable/l_usuario"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
@@ -64,11 +53,10 @@
                         android:id="@+id/txtnombre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="35dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginStart="37dp"
                         android:layout_marginTop="-24dp"
                         android:layout_marginRight="-100dp"
-
+                        android:textStyle="bold"
                         android:text="25"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@color/white"
@@ -78,21 +66,23 @@
                         android:id="@+id/txtubicacion2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="280dp"
+                        android:layout_marginLeft="230dp"
                         android:layout_marginTop="-20dp"
-                        android:background="@drawable/ubicacion"
-
+                        android:background="@drawable/l_ubicacion"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/white"
-                        android:textSize="8sp" />
+                        android:textSize="8sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtubicacion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="300dp"
-                        android:layout_marginTop="-20dp"
+                        android:layout_marginLeft="258dp"
+                        android:layout_marginTop="-26dp"
                         android:text="socabaya"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/white" />
 
@@ -100,14 +90,15 @@
                         android:id="@+id/txtid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="15dp"
                         android:layout_marginTop="6dp"
                         android:layout_marginRight="10dp"
                         android:text="Es la plaza principal de la ciudad de San Juan y es donde se encuentra el kilómetro 0 de la provincia."
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textColor="@color/white"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        />
 
                 </LinearLayout>
 

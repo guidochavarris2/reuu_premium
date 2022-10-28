@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,6 +33,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -66,6 +68,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter2= new Adapter2(this,usuariosArrayList2);
         listView.setAdapter(adapter2);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Usuarios a = usuariosArrayList2.get(i);
+                String envio1 = a.id_evento;String envio2 = a.id;String envio3 = a.categoria;
+                String envio4 = a.codigo;String envio5 = a.fecha;String envio6 = a.hora;
+                String envio7 = a.ubicacion;String envio8 = a.imagen;String envio9 = a.estado;
+                String envio10 = a.id_tipo_evento;String envio11 = a.id_usuario;
+
+                Intent intent = new Intent(MainActivity.this, DetalleEvento.class);
+                intent.putExtra("envio1", envio1);
+                intent.putExtra("envio2", envio2);
+                intent.putExtra("envio3", envio3);
+                intent.putExtra("envio4", envio4);
+                intent.putExtra("envio5", envio5);
+                intent.putExtra("envio6", envio6);
+                intent.putExtra("envio7", envio7);
+                intent.putExtra("envio8", envio8);
+                intent.putExtra("envio9", envio9);
+                intent.putExtra("envio10", envio10);
+                intent.putExtra("envio11", envio11);
+                startActivity(intent);
+            }
+        });
+
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +104,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Buscador.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Perfil.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.entry).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Eventos.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.config).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Configuracion.class);
                 startActivity(intent);
             }
         });
@@ -142,9 +190,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 System.out.println(id + ", " + codigo + ", " + categoria);
 
-                                usuarios = new Usuarios(id,codigo,categoria);
-                                usuariosArrayList2.add(usuarios);
-                                adapter2.notifyDataSetChanged();
+                                //usuarios = new Usuarios(id,codigo,categoria);
+                                //usuariosArrayList2.add(usuarios);
+                                //adapter2.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -239,13 +287,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         JSONObject animal = userJson.getJSONObject(i);
 
                                         String id = animal.getString("nombre");
+                                        String id_evento = animal.getString("id_evento");
+                                        String fecha = animal.getString("fecha");
+                                        String hora = animal.getString("hora");
+                                        String ubicacion = animal.getString("ubicacion");
+                                        String imagen = animal.getString("imagen");
+                                        String estado = animal.getString("estado");
+                                        String tipo_evento = animal.getString("id_tipo_evento");
+                                        String id_usuario = animal.getString("id_usuario");
                                         //listaid.add(id);
                                         String codigo = animal.getString("aforo");
                                         String categoria = animal.getString("descripcion");
 
                                         System.out.println(id + ", " + codigo + ", " + categoria);
 
-                                        usuarios = new Usuarios(id,codigo,categoria);
+                                        usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
                                         usuariosArrayList2.add(usuarios);
                                         adapter2.notifyDataSetChanged();
                                     }
