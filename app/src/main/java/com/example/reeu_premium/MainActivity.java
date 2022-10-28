@@ -80,6 +80,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Perfil.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.entry).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Eventos.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.config).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Configuracion.class);
+                startActivity(intent);
+            }
+        });
 
         /*buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
