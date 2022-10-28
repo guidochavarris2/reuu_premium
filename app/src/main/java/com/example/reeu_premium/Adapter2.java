@@ -7,10 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 public class Adapter2 extends ArrayAdapter<Usuarios> {
@@ -30,11 +38,17 @@ public class Adapter2 extends ArrayAdapter<Usuarios> {
         TextView txtID = view.findViewById(R.id.txtid);
         TextView txtNombre = view.findViewById(R.id.txtubicacion);
         //TextView txtCategoria = view.findViewById(R.id.txtubicacion);
+        ImageView txtImage = view.findViewById(R.id.imagenEvento);
+
+
 
         txtID.setText(arrayusuarios.get(position).getId());
         txtNombre.setText(arrayusuarios.get(position).getCodigo());
+        //txtImage.setImageResource(arrayusuarios.get(position).getimagen());
         //txtCategoria.setText(arrayusuarios.get(position).getCategoria());
 
         return view;
     }
+
+
 }

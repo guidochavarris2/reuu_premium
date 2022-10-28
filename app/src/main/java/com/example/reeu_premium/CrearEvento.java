@@ -301,6 +301,7 @@ public class CrearEvento extends AppCompatActivity {
                         System.out.println(response);
 
                         try {
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
                             System.out.println("resultadooooooooooooooooooooooo");
@@ -365,8 +366,8 @@ public class CrearEvento extends AppCompatActivity {
         };
 
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-            //RequestQueue requestQueue = Volley.newRequestQueue(this);
-            //requestQueue.add(stringRequest);
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(stringRequest);
     }
     }
 
