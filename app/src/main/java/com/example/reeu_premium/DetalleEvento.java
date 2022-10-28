@@ -91,9 +91,9 @@ public class DetalleEvento extends AppCompatActivity {
         byte[] encriptado = cipher.doFinal(code.getBytes());
         return new String(encriptado);
     }
-/**
+
     //usuario logueado DNI
-    private void buscarEvento(String URL) {
+    private void buscarIDEvento(String URL) {
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()) {
             User user = SharedPrefManager.getInstance(this).getUser();
@@ -103,29 +103,6 @@ public class DetalleEvento extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        JsonArrayRequest jsonArrayRequest= new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                JSONObject jsonObject = null;
-                for (int i= 0; i < response.length(); i++) {
-                    try {
-                        jsonObject = response.getJSONObject(i);
-                        edtEvento.setText(jsonObject.getString("{tu atributo}"));
-                        edtDescripcion.setText(jsonObject.getString("{tu atributo}"));
-                        edtFecha.setText(jsonObject.getString("{tu atributo}"));
-                    } catch (JSONException e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
-            }
-        }
-        );
-        requestQueue= Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-    }**/
+
+    }
 }

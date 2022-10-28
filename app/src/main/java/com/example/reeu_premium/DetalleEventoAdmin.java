@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +15,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class DetalleEventoAdmin extends AppCompatActivity {
+
+    Button btnLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,19 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(getApplicationContext(), Lista_invitados.class));
             }**/
+
+        btnLista=(Button)findViewById(R.id.btnLista);
+
+        btnLista.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                Intent nextScreen = new Intent(getApplicationContext(), Lista_de_invitados.class);
+                startActivity(nextScreen);
+
+            }
+        });
+
     }
     public void onClick(View view) {
         if(view.getId() == R.id.btnValidarIngreso){

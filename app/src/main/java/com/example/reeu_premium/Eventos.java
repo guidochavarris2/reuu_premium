@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -60,6 +61,28 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
         listView=findViewById(lisMostraMisEventos);
         adapter3= new Adapter3(this,usuariosArrayList3);
         listView.setAdapter(adapter3);
+
+        findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Eventos.this, Perfil.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.init).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Eventos.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.config).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Eventos.this, Configuracion.class);
+                startActivity(intent);
+            }
+        });
 
         //leerJSON2();
         userLogin2();
