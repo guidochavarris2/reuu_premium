@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class Perfil extends AppCompatActivity implements View.OnClickListener{
+    //implements View.OnClickListener
 
     TextView userName,email,dni,gender;
     Button btnLogout;
