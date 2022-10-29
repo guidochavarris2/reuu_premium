@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -46,10 +47,10 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
 
     SwipeRefreshLayout swipeRefreshLayout;
 
-    public static ArrayList<Usuarios> usuariosArrayList3=new ArrayList<>();
-    public static ArrayList<Usuarios> usuariosArrayList4=new ArrayList<>();
+    public static ArrayList<EventosClass> usuariosArrayList3=new ArrayList<>();
+    public static ArrayList<EventosClass> usuariosArrayList4=new ArrayList<>();
     String url="https://polar-cove-80223.herokuapp.com/estacionamientos.php";
-    Usuarios usuarios;
+    EventosClass EventosClass;
 
     Button siguiente;
 
@@ -69,6 +70,51 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
         listView2=findViewById(lisMostrarEntradas);
         adapter4= new Adapter3(this,usuariosArrayList4);
         listView2.setAdapter(adapter4);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                EventosClass a = usuariosArrayList3.get(i);
+                String envio1 = a.id_evento;String envio2 = a.id;String envio3 = a.categoria;
+                String envio4 = a.codigo;String envio5 = a.fecha;String envio6 = a.hora;
+                String envio7 = a.ubicacion;String envio8 = a.imagen;
+                String envio10 = a.id_tipo_evento;
+
+                Intent intent = new Intent(Eventos.this, DetalleEventoAdmin.class);
+                intent.putExtra("envio1", envio1);
+                intent.putExtra("envio2", envio2);
+                intent.putExtra("envio3", envio3);
+                intent.putExtra("envio4", envio4);
+                intent.putExtra("envio5", envio5);
+                intent.putExtra("envio6", envio6);
+                intent.putExtra("envio7", envio7);
+                intent.putExtra("envio8", envio8);
+                intent.putExtra("envio10", envio10);
+                startActivity(intent);
+            }
+        });
+        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                EventosClass a = usuariosArrayList4.get(i);
+                String envio1 = a.id_evento;String envio2 = a.id;String envio3 = a.categoria;
+                String envio4 = a.codigo;String envio5 = a.fecha;String envio6 = a.hora;
+                String envio7 = a.ubicacion;String envio8 = a.imagen;
+                String envio10 = a.id_tipo_evento;
+
+                Intent intent = new Intent(Eventos.this, DetalleEventoIngresado.class);
+                intent.putExtra("envio1", envio1);
+                intent.putExtra("envio2", envio2);
+                intent.putExtra("envio3", envio3);
+                intent.putExtra("envio4", envio4);
+                intent.putExtra("envio5", envio5);
+                intent.putExtra("envio6", envio6);
+                intent.putExtra("envio7", envio7);
+                intent.putExtra("envio8", envio8);
+                intent.putExtra("envio10", envio10);
+                startActivity(intent);
+            }
+        });
 
         findViewById(R.id.profile).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,18 +294,15 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
                                         String hora = animal.getString("hora");
                                         String ubicacion = animal.getString("ubicacion");
                                         String imagen = animal.getString("imagen");
-                                        String estado = animal.getString("estado");
-                                        //String tipo_evento = animal.getString("id_tipo_evento");
-                                        //String id_usuario = animal.getString("id_usuario");
+                                        String tipo_evento = animal.getString("id_tipo_evento");
                                         //listaid.add(id);
                                         String codigo = animal.getString("aforo");
                                         String categoria = animal.getString("descripcion");
 
                                         System.out.println(id + ", " + codigo + ", " + categoria);
 
-                                        //usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
-                                        usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen);
-                                        usuariosArrayList3.add(usuarios);
+                                        EventosClass = new EventosClass(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen,tipo_evento);
+                                        usuariosArrayList3.add(EventosClass);
                                         adapter3.notifyDataSetChanged();
                                     }
 
@@ -391,8 +434,7 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
                                         String hora = animal.getString("hora");
                                         String ubicacion = animal.getString("ubicacion");
                                         String imagen = animal.getString("imagen");
-                                        //String estado = animal.getString("estado");
-                                        //String tipo_evento = animal.getString("id_tipo_evento");
+                                        String tipo_evento = animal.getString("id_tipo_evento");
                                         //String id_usuario = animal.getString("id_usuario");
                                         //listaid.add(id);
                                         String codigo = animal.getString("aforo");
@@ -400,9 +442,8 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
 
                                         System.out.println(id + ", " + codigo + ", " + categoria);
 
-                                        //usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
-                                        usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen);
-                                        usuariosArrayList4.add(usuarios);
+                                        EventosClass = new EventosClass(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen,tipo_evento);
+                                        usuariosArrayList4.add(EventosClass);
                                         adapter4.notifyDataSetChanged();
                                     }
 

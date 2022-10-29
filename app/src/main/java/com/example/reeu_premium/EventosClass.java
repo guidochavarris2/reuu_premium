@@ -1,9 +1,9 @@
 package com.example.reeu_premium;
 
-public class Usuarios {
-    String id, codigo, categoria, id_evento, fecha, hora, ubicacion, imagen,estado, id_tipo_evento, id_usuario;
+public class EventosClass {
+    String id, codigo, categoria, id_evento, fecha, hora, ubicacion, imagen, id_tipo_evento;
 
-    public Usuarios(String id, String codigo, String categoria, String id_evento, String fecha, String hora, String ubicacion, String imagen,String estado, String id_tipo_evento, String id_usuario) {
+    public EventosClass(String id, String codigo, String categoria, String id_evento, String fecha, String hora, String ubicacion, String imagen, String id_tipo_evento) {
         this.id = id;
         this.codigo = codigo;
         this.categoria = categoria;
@@ -12,9 +12,8 @@ public class Usuarios {
         this.hora = hora;
         this.ubicacion = ubicacion;
         this.imagen = imagen;
-        this.estado = estado;
         this.id_tipo_evento = id_tipo_evento;
-        this.id_usuario = id_usuario;
+
 
     }
 
@@ -82,14 +81,6 @@ public class Usuarios {
         this.imagen = imagen;
     }
 
-    public String getestado() {
-        return estado;
-    }
-
-    public void setestado(String estado) {
-        this.estado = estado;
-    }
-
     public String getid_tipo_evento() {
         return id_tipo_evento;
     }
@@ -98,11 +89,4 @@ public class Usuarios {
         this.id_tipo_evento = id_tipo_evento;
     }
 
-    public String getid_usuario() {
-        return id_usuario;
-    }
-
-    public void setid_usuario(String id_usuario) {
-        this.id_usuario = id_usuario;
-    }
 }

@@ -109,7 +109,7 @@ public class DetalleEvento extends AppCompatActivity {
         String hora = extras.getString("envio6");
         String ubicacion = extras.getString("envio7");
         String imagen = extras.getString("envio8");
-        String estado = extras.getString("envio9");
+        //String estado = extras.getString("envio9");
         String tipo_evento = extras.getString("envio10");
         String id_usuario = extras.getString("envio11");
 
@@ -129,7 +129,11 @@ public class DetalleEvento extends AppCompatActivity {
         horae.setText(hora);
         aforomaxe.setText(aforo);
         aforoe.setText("0");
-        estadoe.setText(estado);
+        if(tipo_evento == "1"){
+            estadoe.setText("Publico");
+        }else{
+            estadoe.setText("Privado");
+        }
         codigoe.setText(id_evento);
 
         //EditText Deshabilitados

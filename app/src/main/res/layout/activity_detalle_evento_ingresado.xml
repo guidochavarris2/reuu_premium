@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDE7F8">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+                <ImageView
+                    android:id="@+id/imageEvento"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_edt"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/purple_background" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txtnombreEvento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="EVENTO EJEMPLO"
+                android:textColor="#7a7a7a"
+                android:textSize="27sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/Descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:text="Descripcion:"
+                android:textColor="#7a7a7a"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/txtDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_background"
+                android:ems="10"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:lines="8"
+                android:padding="10dp"
+                android:textColor="#7a7a7a"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/Ubicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:text="Ubicacion:"
+                android:textColor="#7a7a7a"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/txtubicacion"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/white_background"
+                android:ems="10"
+                android:gravity="center|start"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:padding="10dp"
+                android:textColor="#7a7a7a"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                android:id="@+id/Fecha_hora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:text="Fecha:                        Hora:"
+                android:textColor="#7a7a7a"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/txtfecha"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_background"
+                    android:drawableEnd="@drawable/calendario_18"
+                    android:ems="10"
+                    android:gravity="center|start"
+                    android:inputType="date"
+                    android:lines="2"
+                    android:padding="10dp"
+                    android:textColor="#7a7a7a"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/txthora"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_background"
+                    android:drawableEnd="@drawable/reloj_18"
+                    android:ems="10"
+                    android:gravity="center|start"
+                    android:inputType="datetime"
+                    android:lines="2"
+                    android:padding="10dp"
+                    android:textColor="#7a7a7a"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Aforo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:text="Aforo:"
+                android:textColor="#7a7a7a"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/txtaforomax"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_background"
+                    android:ems="10"
+                    android:gravity="center|start"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:textColor="#7a7a7a"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/aforo_separador"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="         /"
+                    android:textColor="#7a7a7a"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+
+                <EditText
+                    android:id="@+id/txtaforo"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_background"
+                    android:ems="10"
+                    android:gravity="center|start"
+                    android:inputType=""
+                    android:lines="2"
+                    android:padding="10dp"
+                    android:textColor="#7a7a7a"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/txtEstadoEvento"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_weight="3"
+                    android:text="Público"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="Codigo:"
+                    android:textAlignment="textEnd"
+                    android:textColor="#7a7a7a"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+                <TextView
+                    android:id="@+id/txtCodigo"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="6dp"
+                    android:text="1213245"
+                    android:textAlignment="textEnd"
+                    android:textColor="#7a7a7a"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btnIngreso"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="#F44336"
+                android:elevation="3dp"
+                android:text="Ver mi entrada"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

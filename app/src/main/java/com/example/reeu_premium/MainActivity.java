@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Usuarios a = usuariosArrayList2.get(i);
                 String envio1 = a.id_evento;String envio2 = a.id;String envio3 = a.categoria;
                 String envio4 = a.codigo;String envio5 = a.fecha;String envio6 = a.hora;
-                //String envio7 = a.ubicacion;String envio8 = a.imagen;String envio9 = a.estado;
-                //String envio10 = a.id_tipo_evento;String envio11 = a.id_usuario;
+                String envio7 = a.ubicacion;String envio8 = a.imagen;String envio9 = a.estado;
+                String envio10 = a.id_tipo_evento;String envio11 = a.id_usuario;
 
                 Intent intent = new Intent(MainActivity.this, DetalleEvento.class);
                 intent.putExtra("envio1", envio1);
@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("envio4", envio4);
                 intent.putExtra("envio5", envio5);
                 intent.putExtra("envio6", envio6);
-                //intent.putExtra("envio7", envio7);
-                //intent.putExtra("envio8", envio8);
+                intent.putExtra("envio7", envio7);
+                intent.putExtra("envio8", envio8);
                 //intent.putExtra("envio9", envio9);
-                //intent.putExtra("envio10", envio10);
-                //intent.putExtra("envio11", envio11);
+                intent.putExtra("envio10", envio10);
+                intent.putExtra("envio11", envio11);
                 startActivity(intent);
             }
         });
@@ -301,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         System.out.println(id + ", " + codigo + ", " + categoria);
 
-                                        usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen);
+                                        usuarios = new Usuarios(id,codigo, categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
                                         usuariosArrayList2.add(usuarios);
                                         adapter2.notifyDataSetChanged();
                                     }

@@ -37,7 +37,7 @@ public class Adapter2 extends ArrayAdapter<Usuarios> {
         View view = LayoutInflater.from(parent.getContext()).inflate(listados_home, null,true);
         TextView txtID = view.findViewById(R.id.txtid);
         TextView txtNombre = view.findViewById(R.id.txtubicacion);
-        //TextView txtCategoria = view.findViewById(R.id.txtubicacion);
+        TextView txtCategoria = view.findViewById(R.id.txtubicacion);
         ImageView txtImage = view.findViewById(R.id.imagenEvento);
 
 
@@ -45,7 +45,7 @@ public class Adapter2 extends ArrayAdapter<Usuarios> {
         txtID.setText(arrayusuarios.get(position).getId());
         txtNombre.setText(arrayusuarios.get(position).getCodigo());
         //txtImage.setImageResource(arrayusuarios.get(position).getimagen());
-        //txtCategoria.setText(arrayusuarios.get(position).getCategoria());
+        txtCategoria.setText(arrayusuarios.get(position).getCategoria());
 
         return view;
     }
