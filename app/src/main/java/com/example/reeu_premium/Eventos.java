@@ -240,15 +240,16 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
                                         String ubicacion = animal.getString("ubicacion");
                                         String imagen = animal.getString("imagen");
                                         String estado = animal.getString("estado");
-                                        String tipo_evento = animal.getString("id_tipo_evento");
-                                        String id_usuario = animal.getString("id_usuario");
+                                        //String tipo_evento = animal.getString("id_tipo_evento");
+                                        //String id_usuario = animal.getString("id_usuario");
                                         //listaid.add(id);
                                         String codigo = animal.getString("aforo");
                                         String categoria = animal.getString("descripcion");
 
                                         System.out.println(id + ", " + codigo + ", " + categoria);
 
-                                        usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
+                                        //usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
+                                        usuarios = new Usuarios(id,codigo,categoria, id_evento, fecha, hora, ubicacion, imagen, estado);
                                         usuariosArrayList3.add(usuarios);
                                         adapter3.notifyDataSetChanged();
                                     }
