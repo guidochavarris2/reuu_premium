@@ -1,12 +1,12 @@
 package com.example.reeu_premium;
 
 public class Usuarios {
-    String id, codigo, categoria, id_evento, fecha, hora, ubicacion, imagen, estado;
+    String id, codigo, categoria, id_evento, fecha, hora, ubicacion, imagen;
 
     public Usuarios() {
     }
 
-    public Usuarios(String id, String codigo, String categoria, String id_evento, String fecha, String hora, String ubicacion, String imagen, String estado) {
+    public Usuarios(String id, String codigo, String categoria, String id_evento, String fecha, String hora, String ubicacion, String imagen) {
         this.id = id;
         this.codigo = codigo;
         this.categoria = categoria;
@@ -15,7 +15,7 @@ public class Usuarios {
         this.hora = hora;
         this.ubicacion = ubicacion;
         this.imagen = imagen;
-        this.estado = estado;
+
 
 
 
@@ -85,13 +85,7 @@ public class Usuarios {
         this.imagen = imagen;
     }
 
-    public String getestado() {
-        return estado;
-    }
 
-    public void setestado(String estado) {
-        this.estado = estado;
-    }
 
 
 }

@@ -7,6 +7,7 @@ public class URLs {
     public static final String URL_LOGIN= ROOT_URL + "login";
     public static final String URL_LISTADO= ROOT_URL + "login_id";
     public static final String URL_PUBLICO= ROOT_URL + "publico";
+    public static final String URL_MISEVENTOS=ROOT_URL + "miseventos";
     public static final String URL_INVITADO= ROOT_URL + "invitado";
     private static final String ROOT_URL2 = "https://polar-cove-80223.herokuapp.com/crear_evento.php?apicall=";
     public static final String URL_CREAR = ROOT_URL_AZURE + "crear";
