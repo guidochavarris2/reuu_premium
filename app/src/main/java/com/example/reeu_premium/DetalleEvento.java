@@ -62,6 +62,7 @@ public class DetalleEvento extends AppCompatActivity {
                     buscarIDEvento();
                     dato2 = Codigo.getText().toString().trim();
                     combo = dato1 + dato2;
+                    System.out.println(dato1);
                     combo = encriptar(combo);
 
                     Intent i = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);

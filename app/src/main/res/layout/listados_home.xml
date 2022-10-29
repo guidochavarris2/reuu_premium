@@ -1,125 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+<LinearLayout
+    android:id="@+id/box_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#f0f0f0"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/single_post_circuito_linearbox"
+        app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-
-        android:orientation="vertical" >
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="134dp">
-
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/box_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-
-            android:orientation="horizontal" >
-
-            <LinearLayout
-                android:id="@+id/single_post_circuito_linearbox"
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:layout_margin="2dp"
-                android:background="@drawable/l_reunion5"
-                android:orientation="horizontal"
-                android:padding="5dp"
-                android:radius="10dp"
-                >
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="95dp"
-                    android:layout_weight="0.7"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/txtid2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:background="@drawable/l_usuario"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/txtnombre"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="37dp"
-                        android:layout_marginTop="-24dp"
-                        android:layout_marginRight="-100dp"
-                        android:textStyle="bold"
-                        android:text="25"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/txtubicacion2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="230dp"
-                        android:layout_marginTop="-20dp"
-                        android:background="@drawable/l_ubicacion"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/white"
-                        android:textSize="8sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtubicacion"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="258dp"
-                        android:layout_marginTop="-26dp"
-                        android:text="socabaya"
-                        android:textStyle="bold"
-                        android:textSize="16sp"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:id="@+id/txtid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginRight="10dp"
-                        android:text="Es la plaza principal de la ciudad de San Juan y es donde se encuentra el kilómetro 0 de la provincia."
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        />
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-        </LinearLayout>
+        android:layout_margin="5dp"
+        android:elevation="10dp">
 
         <ImageView
-            android:id="@+id/imagenEvento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
-    </LinearLayout>
+            android:id="@+id/imgPlatilloC"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/festividad"
+            />
+
+        <RelativeLayout
+            android:layout_width="270dp"
+            android:layout_height="110dp"
+            android:layout_gravity="end"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txtid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Nombre"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/ubicacion"
+                android:layout_marginRight="70dp"
+                android:textColor="#000"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/txtubicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="7dp"
+                android:text="Ubicación"
+                android:layout_marginRight="15dp"
+                android:textColor="#000"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/iv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descripcion"
+                android:layout_below="@id/txtid"
+                android:layout_marginTop="6dp"
+                />
+
+            <TextView
+                android:id="@+id/txtnombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv1"
+                android:layout_marginTop="11dp"
+                android:layout_marginLeft="20dp"
+                android:text="Personas"
+                android:textColor="#000"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/txtPricePlatilloC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv1"
+                android:layout_marginTop="10dp"
+
+                android:background="@drawable/persona"
+                />
+
+            <Button
+                android:id="@+id/btnOrdenarPC"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_below="@+id/txtubicacion"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="6dp"
+                android:backgroundTint="#FF8500"
+                android:text="Disponible"
+                android:textColor="#fff"
+                android:textSize="11dp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

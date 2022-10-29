@@ -50,7 +50,7 @@
                 <Button
                     android:id="@+id/btnbuscar"
                     android:layout_width="200dp"
-                    android:layout_height="50dp"
+                    android:layout_height="54dp"
                     android:text="buscar"
                     android:textColor="#ffffff"
                     android:textSize="15sp"
@@ -65,7 +65,7 @@
                 <EditText
                     android:id="@+id/editTextDni"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="45dp"
                     android:layout_gravity="center"
                     android:layout_weight="1.1"
                     android:gravity="center"
