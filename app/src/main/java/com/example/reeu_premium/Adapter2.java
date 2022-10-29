@@ -38,7 +38,7 @@ public class Adapter2 extends ArrayAdapter<Usuarios> {
         TextView txtID = view.findViewById(R.id.txtid);
         TextView txtNombre = view.findViewById(R.id.txtubicacion);
         //TextView txtCategoria = view.findViewById(R.id.txtubicacion);
-        ImageView txtImage = view.findViewById(R.id.imagenEvento);
+        //ImageView txtImage = view.findViewById(R.id.imagenEvento);
 
 
 

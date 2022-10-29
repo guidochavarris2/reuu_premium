@@ -58,11 +58,8 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- conevertir en un reciclerview o algo -->
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="520dp"
-                android:layout_marginLeft="-15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginRight="-15dp">
+                android:layout_width="match_parent"
+                android:layout_height="520dp">
 
                 <ListView
                     android:id="@+id/lisMostrar"
