@@ -14,11 +14,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.List;
-public class Adapter3 extends ArrayAdapter<Usuarios> {
+public class Adapter3 extends ArrayAdapter<EventosClass> {
     Context context;
-    List<Usuarios> arrayusuarios;
+    List<EventosClass> arrayusuarios;
 
-    public Adapter3(@NonNull Context context, List<Usuarios>arrayusuarios) {
+    public Adapter3(@NonNull Context context, List<EventosClass>arrayusuarios) {
         super(context, listados_home2,arrayusuarios);
         this.context=context;
         this.arrayusuarios = arrayusuarios;
