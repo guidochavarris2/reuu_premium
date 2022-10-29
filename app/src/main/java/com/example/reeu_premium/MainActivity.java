@@ -39,6 +39,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     ListView listView;
+    //Adapter2 adapter2;
     Adapter2 adapter2;
 
     RequestQueue queue;
@@ -154,69 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }*/
     }
 
-    private void leerJSON2(){
-        String url = "https://polar-cove-80223.herokuapp.com/estacionamientos.php";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (GET, url, null, new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-
-                        System.out.println("Response: " + response.toString());
-
-
-                        try {
-                            // JSONObject jsonObject = new JSONObject(response);
-                            //String exito = jsonObject.getString("exito");
-
-                            //int id2 = (int) listaid.get(listaid.size() - 1);
-
-                            // nuevalista.add(id2);
-
-
-                            JSONArray agenteJSON=response.getJSONArray("datos");
-                            for (int i = 0; i < agenteJSON.length(); i++) {
-
-                                String numcadena = String.valueOf(i);
-
-                                JSONObject animal = agenteJSON.getJSONObject(i);
-
-                                String id = animal.getString("id");
-                                //listaid.add(id);
-                                String codigo = animal.getString("codigo");
-                                String categoria = animal.getString("categoria");
-
-                                System.out.println(id + ", " + codigo + ", " + categoria);
-
-                                //usuarios = new Usuarios(id,codigo,categoria);
-                                //usuariosArrayList2.add(usuarios);
-                                //adapter2.notifyDataSetChanged();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
-
-                    }
-                });
-
-        // Access the RequestQueue through your singleton class.
-        //Volley.newRequestQueue(this).add(jsonObjectRequest);
-        //System.out.println("estos son todos los datos que" + jsonObjectRequest);
-
-        RequestQueue requestQueue =Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
-        System.out.println(jsonObjectRequest);
-    }
 
     private void userLogin2() {
         //first getting the values

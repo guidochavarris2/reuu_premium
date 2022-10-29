@@ -42,6 +42,7 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
     Adapter3 adapter3;
     Adapter3 adapter4;
 
+
     RequestQueue queue;
 
     SwipeRefreshLayout swipeRefreshLayout;
@@ -65,6 +66,8 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
         listView=findViewById(lisMostraMisEventos);
         adapter3= new Adapter3(this,usuariosArrayList3);
         listView.setAdapter(adapter3);
+
+
 
         listView2=findViewById(lisMostrarEntradas);
         adapter4= new Adapter3(this,usuariosArrayList4);
