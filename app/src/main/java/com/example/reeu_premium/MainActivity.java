@@ -27,6 +27,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -42,6 +45,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     ListView listView;
+    ImageSlider imageSlider;
     //Adapter2 adapter2;
     Adapter adapter2;
 
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         queue = Volley.newRequestQueue(this);
         //buttonLogout = (Button)findViewById(R.id.buttonLogout);
-
+        imageSlider = findViewById(R.id.image_slider);
         buttonLogout = (ImageView)findViewById(R.id.imagenEntrada);
         FloatingActionButton Boton_Agregar = findViewById(R.id.agregar_evento);
 
@@ -175,6 +179,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
             finish();
         }*/
+
+    //agregando slider de imagenes
+    ArrayList<SlideModel> images = new ArrayList<>();
+        images.add(new SlideModel(R.drawable.cumple, null));
+        images.add(new SlideModel(R.drawable.conferencia, null));
+        images.add(new SlideModel(R.drawable.concierto, null));
+        images.add(new SlideModel(R.drawable.compromisos, null));
+    imageSlider.setImageList(images, ScaleTypes.CENTER_CROP);
+
     }
 
 
