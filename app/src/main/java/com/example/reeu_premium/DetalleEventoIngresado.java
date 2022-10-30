@@ -2,11 +2,18 @@ package com.example.reeu_premium;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class DetalleEventoIngresado extends AppCompatActivity {
+
+    Button btnQR;
+
+    TextView codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +21,24 @@ public class DetalleEventoIngresado extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_evento_ingresado);
 
         recibirdetalles();
+
+        //guido
+        btnQR=(Button)findViewById(R.id.btnIngreso);
+
+        codigo = (TextView) findViewById(R.id.txtCodigo);
+
+        btnQR.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                Intent nextScreen = new Intent(getApplicationContext(), Codigo_QR_invitado.class);
+                nextScreen.putExtra("codigo", codigo.getText());
+
+                startActivity(nextScreen);
+
+
+            }
+        });
     }
     public void recibirdetalles() {
         Bundle extras = getIntent().getExtras();

@@ -68,6 +68,8 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Lista_invitados.class));
             }**/
 
+
+
         btnLista=(Button)findViewById(R.id.btnLista);
 
         btnLista.setOnClickListener(new View.OnClickListener() {
