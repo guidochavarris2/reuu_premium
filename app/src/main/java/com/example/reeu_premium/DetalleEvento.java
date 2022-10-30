@@ -145,4 +145,6 @@ public class DetalleEvento extends AppCompatActivity {
         aforomaxe.setEnabled(false);
         aforoe.setEnabled(false);
     }
+
+
 }
