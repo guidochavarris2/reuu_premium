@@ -225,6 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Privado"
+                    android:checked="true"
                     android:textColor="#7a7a7a"
                     android:textColorHint="#404040"
                     android:textSize="18sp"

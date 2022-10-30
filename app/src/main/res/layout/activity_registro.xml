@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDE7F8">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#EDE7F8"
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    tools:context=".Registro">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +31,6 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/measure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -45,7 +40,7 @@
                 android:orientation="horizontal"
                 android:padding="1px"
                 android:textColor="#fff"
-                android:weightSum="2" >
+                android:weightSum="2">
 
                 <Button
                     android:id="@+id/btnbuscar"
@@ -60,7 +55,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:marqueeRepeatLimit="marquee_forever"
-                    android:singleLine="true" />
+                    android:singleLine="true"/>
 
                 <EditText
                     android:id="@+id/editTextDni"
@@ -75,7 +70,7 @@
                     android:inputType="number"
 
                     android:textColorHint="#404040"
-                    android:textSize="17sp" />
+                    android:textSize="17sp"  />
             </LinearLayout>
             <TextView
                 android:id="@+id/textView9"
@@ -96,10 +91,9 @@
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/background_edt"
                 android:hint="Tu nombre..."
-                android:focusable="false"
                 android:paddingStart="20dp"
                 android:textColorHint="#404040"
-                android:textSize="17sp" />
+                android:textSize="17sp"/>
 
 
             <TextView
@@ -121,7 +115,6 @@
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/background_edt"
                 android:hint="Tus apellidos..."
-                android:focusable="false"
                 android:inputType="textPersonName"
                 android:paddingStart="20dp"
                 android:textColorHint="#404040"
@@ -175,7 +168,7 @@
                 android:inputType="textPassword"
                 android:paddingStart="20dp"
                 android:textColorHint="#404040"
-                android:textSize="17sp" />
+                android:textSize="17sp"/>
 
             <RadioGroup
                 android:id="@+id/radioGender"
@@ -227,7 +220,7 @@
                 android:layout_gravity="center_horizontal"/>
 
             <TextView
-                android:id="@+id/tvlogin"
+                android:id="@+id/textViewLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -239,6 +232,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
         </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+</RelativeLayout>
