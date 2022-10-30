@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,18 +12,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.w3c.dom.Text;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DetalleEventoAdmin extends AppCompatActivity {
 
     Button btnLista;
-
+    String codigoa;
     TextView codigo;
+    QR_detector QR_detector;
 
     //String codigo_string = codigo.getText().toString();
+    public static ArrayList<com.example.reeu_premium.QR_detector> usuariosArrayListInvitado=new ArrayList<com.example.reeu_premium.QR_detector>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +117,26 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show();
             } else {
                 String scanqr = result.getContents();
+                invitado();
+                for (int i = 0; i < usuariosArrayListInvitado.size(); i++) {
+                    if (scanqr.equals( usuariosArrayListInvitado.get(i))){
+                        Intent a = new Intent(DetalleEventoAdmin.this, Entrada_exitosa.class);
+                        a.putExtra("scanqr", scanqr);
+                        startActivity(a);
+                    } else {
+                        Intent a = new Intent(DetalleEventoAdmin.this, Entrada_denegada.class);
+                        a.putExtra("scanqr", scanqr);
+                        startActivity(a);
+                    }
+                }
+
+
+
+            /*
+            if(result.getContents() == null) {
+                Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show();
+            } else {
+                String scanqr = result.getContents();
                 boolean verif = true;
 
 
@@ -120,7 +154,7 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                     Intent i = new Intent(DetalleEventoAdmin.this, Entrada_exitosa.class);
                     i.putExtra("scanqr", scanqr);
                     startActivity(i);
-                }
+                }*/
             }
         }
     }
@@ -173,5 +207,86 @@ public class DetalleEventoAdmin extends AppCompatActivity {
         horae.setEnabled(false);
         aforomaxe.setEnabled(false);
         aforoe.setEnabled(false);
+    }
+    private void invitado() {
+        //first getting the values
+
+        String principal = new String();
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+            User user = SharedPrefManager.getInstance(this).getUser();
+            final String id = String.valueOf(user.getId());
+            System.out.println(id);
+
+            final String username = "GUIDO";
+            final String password = "dovermori";
+            final String codiguin = codigoa;
+
+            //validating inputs
+            if (TextUtils.isEmpty(username)) {
+                return;
+            }
+            if (TextUtils.isEmpty(password)) {
+                return;
+            }
+            //if everything is fine
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_USUARIOS_INVITADOS,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //progressBar.setVisibility(View.GONE);
+
+                            try {
+                                //converting response to json object
+                                JSONObject obj = new JSONObject(response);
+
+                                //if no error in response
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                if (!obj.getBoolean("error")) {
+                                    System.out.println("esta vainaaaaaaaaaaaaaaaaaa");
+                                    System.out.println(obj);
+                                    JSONArray userJson=obj.getJSONArray("nodo");
+                                    System.out.println("ESTE ES EL JSONUSUARIO");
+                                    System.out.println(userJson);
+
+                                    for (int i = 0; i < userJson.length(); i++) {
+                                        JSONObject animal = userJson.getJSONObject(i);
+                                        //String id = animal.getString("id");
+                                        String clave = animal.getString("clave");
+
+                                        QR_detector  = new QR_detector(clave);
+                                        usuariosArrayListInvitado.add(QR_detector);
+                                    }
+
+                                    System.out.println("ggaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                                    System.out.println(userJson);
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+            {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("username", username);
+                    params.put("password", password);
+                    params.put("codigo",codiguin);
+                    return params;
+                }
+            };
+
+            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+
+
+        }
     }
 }
