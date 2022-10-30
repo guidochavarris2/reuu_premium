@@ -35,14 +35,14 @@ public class Registro extends AppCompatActivity {
 
     EditText editTextUsername, editTextEmail, editTextPassword, editTextApellidos, editTextDni;
     RadioGroup radioGroupGender;
-    TextView tvlogin;
     ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        //progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
 
         //if the user is already logged in we will directly start the MainActivity (profile) activity
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
@@ -50,7 +50,6 @@ public class Registro extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
             return;
         }
-        tvlogin=(TextView)findViewById(R.id.tvlogin);
 
         editTextUsername = findViewById(R.id.editTextUsername);
 
@@ -62,15 +61,15 @@ public class Registro extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         radioGroupGender = findViewById(R.id.radioGender);
 
-        editTextUsername.setEnabled(false);
-        editTextApellidos.setEnabled(false);
+        //editTextUsername.setEnabled(false);
+        //editTextApellidos.setEnabled(false);
 
-        tvlogin.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.textViewLogin).setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
 
-                Intent nextScreen = new Intent(getApplicationContext(), Login.class);
-                startActivity(nextScreen);
+                finish();
+                startActivity(new Intent(Registro.this, Login.class));
 
             }
         });
@@ -133,7 +132,7 @@ public class Registro extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //progressBar.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.GONE);
                         //System.out.println(response);
 
                         try {
