@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -35,12 +36,13 @@ public class Registro extends AppCompatActivity {
     EditText editTextUsername, editTextEmail, editTextPassword, editTextApellidos, editTextDni;
     RadioGroup radioGroupGender;
     TextView tvlogin;
+    ProgressBar progressBar;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        //progressBar = findViewById(R.id.progressBar);
 
         //if the user is already logged in we will directly start the MainActivity (profile) activity
         if (SharedPrefManager.getInstance(this).isLoggedIn()) {
@@ -131,13 +133,13 @@ public class Registro extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        //progressBar.setVisibility(View.GONE);
                         //System.out.println(response);
 
                         try {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);
-                            System.out.println("Qbjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj");
+
                             //System.out.println(obj);
                             //if no error in response
                             if (!obj.getBoolean("error")) {

@@ -1,7 +1,9 @@
 package com.example.reeu_premium;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +22,7 @@ public class Codigo_QR_invitado extends AppCompatActivity {
 
         try {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.encodeBitmap(hash, BarcodeFormat.QR_CODE, 750, 750);
+            Bitmap bitmap = barcodeEncoder.encodeBitmap(hash, BarcodeFormat.QR_CODE, 850, 850);
 
             imgQR.setImageBitmap(bitmap);
         }catch (Exception e) {
@@ -35,5 +37,10 @@ public class Codigo_QR_invitado extends AppCompatActivity {
         setContentView(R.layout.activity_codigo_qr_invitado);
 
         recibirqr();
+    }
+
+    public void back_home(View view){
+        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+        finish();
     }
 }

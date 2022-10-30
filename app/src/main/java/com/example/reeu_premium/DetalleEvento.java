@@ -99,7 +99,8 @@ public class DetalleEvento extends AppCompatActivity {
         }
 
     }
-    //recibir detalles hola
+
+
     public void recibirdetalles() {
         Bundle extras = getIntent().getExtras();
         String id_evento = extras.getString("envio1");
@@ -145,4 +146,6 @@ public class DetalleEvento extends AppCompatActivity {
         aforomaxe.setEnabled(false);
         aforoe.setEnabled(false);
     }
+
+
 }

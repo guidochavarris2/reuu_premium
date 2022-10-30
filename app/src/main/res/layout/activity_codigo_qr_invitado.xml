@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#EDE7F8"
+    android:orientation="vertical"
     tools:context=".Codigo_QR_invitado">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,19 +31,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_height="450dp"
         android:layout_gravity="center"
-        android:layout_height="550dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shadowqr">
 
         <ImageView
             android:id="@+id/imageQR"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="70dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="80dp"
             android:layout_marginEnd="70dp"
-            android:layout_marginBottom="150dp"
-            android:background="@drawable/background_edt"
+            android:layout_marginBottom="80dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -56,48 +59,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="61dp"
-        android:layout_marginTop="20dp"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonRegister"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
             android:layout_marginRight="4dp"
             android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:backgroundTint="#FF3D00"
+            android:backgroundTint="#F44336"
             android:elevation="3dp"
-            android:text="COMPROBAR"
+            android:onClick="back_home"
+            android:text="Volver al menú"
             android:textColor="#ffffff"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:cornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+            app:cornerRadius="10dp" />
 
-        <Button
-            android:id="@+id/btnCancelar"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_weight="1"
-            android:backgroundTint="#E10202"
-            android:elevation="3dp"
-            android:text="Cancelar"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:cornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
     </LinearLayout>
 
 </LinearLayout>

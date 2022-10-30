@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.w3c.dom.Text;
+
 public class DetalleEventoAdmin extends AppCompatActivity {
 
     Button btnLista;
@@ -120,6 +122,7 @@ public class DetalleEventoAdmin extends AppCompatActivity {
             }
         }
     }
+
     public void recibirdetalles() {
         Bundle extras = getIntent().getExtras();
         String id_evento = extras.getString("envio1");
