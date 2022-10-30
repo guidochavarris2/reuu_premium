@@ -8,10 +8,34 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class Codigo_QR_invitado extends AppCompatActivity {
+
+    String codigo;
+    RequestQueue queue;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_codigo_qr_invitado);
+
+        queue = Volley.newRequestQueue(this);
+
+        Bundle bundle = getIntent().getExtras();
+
+        //String valor_recibido = bundle.getString("codigo");
+        String valor_recibido = bundle.getString("codigo");
+
+        codigo = valor_recibido;
+
+        recibirqr();
+    }
+
+
 
     public void recibirqr() {
         Bundle extras = getIntent().getExtras();
@@ -31,13 +55,7 @@ public class Codigo_QR_invitado extends AppCompatActivity {
         //CREAR QR
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_codigo_qr_invitado);
 
-        recibirqr();
-    }
 
     public void back_home(View view){
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
