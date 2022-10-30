@@ -41,7 +41,7 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
     ListView listView;
     ListView listView2;
     Adapter3 adapter3;
-    Adapter3 adapter4;
+    Adapter4 adapter4;
 
 
     RequestQueue queue;
@@ -71,7 +71,7 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
 
 
         listView2=findViewById(lisMostrarEntradas);
-        adapter4= new Adapter3(this,usuariosArrayList4);
+        adapter4= new Adapter4(this,usuariosArrayList4);
         listView2.setAdapter(adapter4);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
