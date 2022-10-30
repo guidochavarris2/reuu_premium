@@ -18,6 +18,7 @@ public class Codigo_QR_invitado extends AppCompatActivity {
     String codigo;
     RequestQueue queue;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +35,7 @@ public class Codigo_QR_invitado extends AppCompatActivity {
 
         recibirqr();
     }
+
 
 
 
