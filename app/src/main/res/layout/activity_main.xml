@@ -61,10 +61,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="520dp">
 
-                <ListView
-                    android:id="@+id/lisMostrar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>

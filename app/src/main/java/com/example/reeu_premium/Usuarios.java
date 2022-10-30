@@ -1,7 +1,8 @@
 package com.example.reeu_premium;
 
 public class Usuarios {
-    String id, codigo, categoria, id_evento, fecha, hora, ubicacion, imagen,estado, id_tipo_evento, id_usuario;
+
+String id, codigo, categoria, id_evento, fecha, hora, ubicacion, imagen,estado, id_tipo_evento, id_usuario;
 
     public Usuarios(String id, String codigo, String categoria, String id_evento, String fecha, String hora, String ubicacion, String imagen,String estado, String id_tipo_evento, String id_usuario) {
         this.id = id;

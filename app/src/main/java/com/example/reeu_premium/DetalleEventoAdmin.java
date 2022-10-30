@@ -20,6 +20,10 @@ public class DetalleEventoAdmin extends AppCompatActivity {
 
     Button btnLista;
 
+    TextView codigo;
+
+    //String codigo_string = codigo.getText().toString();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,9 @@ public class DetalleEventoAdmin extends AppCompatActivity {
         EditText Hora = findViewById(R.id.txthora);
         EditText AforoMax = findViewById(R.id.txtaforomax);
         EditText Aforo = findViewById(R.id.txtaforo);
+
+
+
 
         TextView Estado = findViewById(R.id.txtEstadoEvento);
         TextView Nombre = findViewById(R.id.txtnombreEvento);
@@ -47,6 +54,13 @@ public class DetalleEventoAdmin extends AppCompatActivity {
 
         recibirdetalles();
 
+
+        codigo = (TextView) findViewById(R.id.txtCodigo);
+        System.out.println("esta vaina es pwwwwwwwwwwwwwwwwwwwwwwwwwww");
+
+        System.out.println(codigo);
+        //System.out.println(codigo_string);
+
         /**findViewById(R.id.lista_de_invitados).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +75,10 @@ public class DetalleEventoAdmin extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent nextScreen = new Intent(getApplicationContext(), Lista_de_invitados.class);
+                nextScreen.putExtra("codigo", codigo.getText());
+
                 startActivity(nextScreen);
+
 
             }
         });
@@ -127,6 +144,12 @@ public class DetalleEventoAdmin extends AppCompatActivity {
         EditText aforoe = findViewById(R.id.txtaforo);
         TextView estadoe = findViewById(R.id.txtEstadoEvento);
         TextView codigoe = findViewById(R.id.txtCodigo);
+
+        //System.out.println("fewfewfwooooooooooooooooooo");
+        //System.out.println(codigoe);
+
+
+
         nombree.setText(nombre);
         descripcione.setText(descripcion);
         ubicacione.setText(ubicacion);
