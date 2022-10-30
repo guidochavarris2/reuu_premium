@@ -2,7 +2,7 @@ package com.example.reeu_premium;
 
 import static com.android.volley.Request.Method.GET;
 import static com.example.reeu_premium.R.id.lisMostraMisEventos;
-import static com.example.reeu_premium.R.id.lisMostrar;
+//import static com.example.reeu_premium.R.id.lisMostrar;
 import static com.example.reeu_premium.R.id.lisMostrarEntradas;
 
 import androidx.appcompat.app.AppCompatActivity;

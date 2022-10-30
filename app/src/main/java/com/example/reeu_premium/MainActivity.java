@@ -3,7 +3,10 @@ package com.example.reeu_premium;
 import static com.android.volley.Request.Method.GET;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -40,9 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ListView listView;
     //Adapter2 adapter2;
-    Adapter2 adapter2;
+    Adapter adapter2;
+
+
+    List<Usuarios>productosList;
+
 
     RequestQueue queue;
+    RecyclerView recyclerView;
 
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -65,14 +73,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonLogout = (ImageView)findViewById(R.id.imagenEntrada);
         FloatingActionButton Boton_Agregar = findViewById(R.id.agregar_evento);
 
-        listView=findViewById(R.id.lisMostrar);
-        adapter2= new Adapter2(this,usuariosArrayList2);
-        listView.setAdapter(adapter2);
+        //listView=findViewById(R.id.recy);
+        recyclerView=findViewById(R.id.recy);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        productosList=new ArrayList<>();
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        userLogin3();
+
+        //cargargarImagen();
+        /*recyclerView=findViewById(R.id.recy);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter2= new Adapter(this,usuariosArrayList2);
+        recyclerView.setAdapter(adapter2);*/
+
+
+
+        /*RecyclerView.ViewHolder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Usuarios a = usuariosArrayList2.get(i);
+                Usuarios a = productosList.get(i);
                 String envio1 = a.id_evento;String envio2 = a.id;String envio3 = a.categoria;
                 String envio4 = a.codigo;String envio5 = a.fecha;String envio6 = a.hora;
                 String envio7 = a.ubicacion;String envio8 = a.imagen;String envio9 = a.estado;
@@ -92,7 +113,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("envio11", envio11);
                 startActivity(intent);
             }
-        });
+
+        });*/
 
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });*/
 
         //leerJSON2();
-        userLogin2();
+        //userLogin2();
 /*
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
@@ -240,9 +262,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                         System.out.println(id + ", " + codigo + ", " + categoria);
 
+
+
                                         usuarios = new Usuarios(id,codigo, categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
                                         usuariosArrayList2.add(usuarios);
-                                        adapter2.notifyDataSetChanged();
+                                        recyclerView.setAdapter(adapter2);
+                                        //adapter2.notifyDataSetChanged();
+
                                     }
 
                                     //creating a new user object
@@ -298,6 +324,156 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+
+    private void userLogin3() {
+        //first getting the values
+
+        String principal = new String();
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+
+
+            User user = SharedPrefManager.getInstance(this).getUser();
+
+            final String id = String.valueOf(user.getId());
+
+            //principal.append(id);
+
+
+            System.out.println("este es mi iddddddddddddddddddddddddddddd");
+            System.out.println(id);
+
+            final String username = "GUIDO";
+            final String password = "dovermori";
+            //final Integer id = 1;
+            //final String id = principal;
+            //final StringBuffer id = principal;
+
+
+            //validating inputs
+            if (TextUtils.isEmpty(username)) {
+
+                return;
+            }
+
+            if (TextUtils.isEmpty(password)) {
+
+                return;
+            }
+
+            //if everything is fine
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_PUBLICO,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //progressBar.setVisibility(View.GONE);
+
+                            try {
+                                //converting response to json object
+                                JSONObject obj = new JSONObject(response);
+
+                                //if no error in response
+                                if (!obj.getBoolean("error")) {
+                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                    //JSONArray agenteJSON=response.getJSONArray("datos");
+                                    //getting the user from the response
+
+                                    System.out.println("esta vainaaaaaaaaaaaaaaaaaa");
+                                    System.out.println(obj);
+                                    //JSONObject userJson = obj.getJSONObject("nodo");
+                                    JSONArray userJson=obj.getJSONArray("nodo");
+
+                                    System.out.println("ESTE ES EL JSONUSUARIO");
+
+                                    System.out.println(userJson);
+
+
+                                    for (int i = 0; i < userJson.length(); i++) {
+
+                                        String numcadena = String.valueOf(i);
+
+                                        JSONObject Usuarios = userJson.getJSONObject(i);
+
+
+
+                                        productosList.add(new Usuarios(
+                                                Usuarios.getString("id_evento"),
+                                                Usuarios.getString("id_evento"),
+                                                Usuarios.getString("nombre"),
+                                                Usuarios.getString("id_evento"),
+                                                Usuarios.getString("fecha"),
+                                                Usuarios.getString("hora"),
+                                                Usuarios.getString("ubicacion"),
+                                                Usuarios.getString("imagen"),
+                                                Usuarios.getString("estado"),
+                                                Usuarios.getString("id_tipo_evento"),
+                                                Usuarios.getString("id_usuario")
+                                        ));
+
+                                        String id = Usuarios.getString("nombre");
+                                        String id_evento = Usuarios.getString("id_evento");
+                                        String fecha = Usuarios.getString("fecha");
+                                        String hora = Usuarios.getString("hora");
+                                        String ubicacion = Usuarios.getString("ubicacion");
+                                        String imagen = Usuarios.getString("imagen");
+                                        String estado = Usuarios.getString("estado");
+                                        String tipo_evento = Usuarios.getString("id_tipo_evento");
+                                        String id_usuario = Usuarios.getString("id_usuario");
+                                        //listaid.add(id);
+                                        String codigo = Usuarios.getString("aforo");
+                                        String categoria = Usuarios.getString("descripcion");
+
+                                        System.out.println(id + ", " + codigo + ", " + categoria);
+
+
+
+                                        usuarios = new Usuarios(id,codigo, categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
+                                        usuariosArrayList2.add(usuarios);
+
+
+                                        }
+
+                                        Adapter adapter = new Adapter(MainActivity.this, productosList);
+                                        recyclerView.setAdapter(adapter);
+
+
+
+                                } else {
+                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+            {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("username", username);
+                    params.put("password", password);
+                    params.put("id_usuario",id);
+                    //params.put("id", String.valueOf(id));
+                    //params.put("id",id);
+                    return params;
+                }
+            };
+
+            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+            Volley.newRequestQueue(this).add(stringRequest);
+
+
+        }
+    }
+
+
 
 
     private HashMap<String, Object> getHashMapFromJson(String json) throws JSONException {

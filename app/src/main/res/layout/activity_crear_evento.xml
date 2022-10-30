@@ -201,12 +201,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Privado"
+                    android:checked="true"
                     android:textSize="18sp"
                     android:textColor="#7a7a7a"
                     android:textStyle="bold|italic"
                     android:textColorHint="#404040" />
 
             </RadioGroup>
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
