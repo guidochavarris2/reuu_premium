@@ -99,7 +99,8 @@ public class DetalleEvento extends AppCompatActivity {
         }
 
     }
-    //recibir detalles hola
+
+
     public void recibirdetalles() {
         Bundle extras = getIntent().getExtras();
         String id_evento = extras.getString("envio1");
