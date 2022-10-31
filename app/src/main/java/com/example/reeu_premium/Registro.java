@@ -199,7 +199,7 @@ public class Registro extends AppCompatActivity {
 
 
 
-        String url = "https://apiperu.dev/api/dni/" + dni2 +"?api_token=4b84a16cebfd857e0ee64dea885b6c90b49208e3e29ee17e126a743ab473b76c";
+        String url = "https://apiperu.dev/api/dni/" + dni2 +"?api_token=0e3ed862ab07ffef9036cf2439ba00094e3d04e0b84b645fce2e329b08e5c49c";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (GET, url, null, new Response.Listener<JSONObject>() {

@@ -1,12 +1,26 @@
 package com.example.reeu_premium;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -17,6 +31,9 @@ public class DetalleEvento1 extends AppCompatActivity {
     String dato1;
     String dato2;
     String combo;
+    Button btnQR;
+
+    TextView codigo;
     private static final String AES = "AES";
 
     @Override
@@ -29,6 +46,13 @@ public class DetalleEvento1 extends AppCompatActivity {
 
         detallebusqueda();
 
+        //guido
+
+
+        codigo = (TextView) findViewById(R.id.txtCodigo);
+
+
+
         ingreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +64,9 @@ public class DetalleEvento1 extends AppCompatActivity {
                     combo = encriptar(combo);
 
                     Intent i = new Intent(DetalleEvento1.this, Codigo_QR_invitado.class);
+                    i.putExtra("codigo", codigo.getText());
                     i.putExtra("hashqr", combo);
+                    agregado();
                     startActivity(i);
                 }catch (Exception e){
                     e.printStackTrace();
@@ -48,6 +74,64 @@ public class DetalleEvento1 extends AppCompatActivity {
             }
         });
     }
+
+    private void agregado() {
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+
+            User user = SharedPrefManager.getInstance(this).getUser();
+            final String id = String.valueOf(user.getId());
+            //final String codiguin = String.valueOf();
+            final String codiguin = codigo.getText().toString();
+            final String clavecita = combo;
+            //final String username = .getText().toString();
+            //final String clavecita = clave;
+
+
+            final ProgressDialog progressDialog =new ProgressDialog(this);
+
+            progressDialog.setMessage("Actualizando");
+            progressDialog.dismiss();
+
+            StringRequest request =new StringRequest(Request.Method.POST, URLs.URL_INGRESAR2, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(DetalleEvento1.this, response, Toast.LENGTH_SHORT).show();
+
+                    System.out.println(response);
+
+                    //startActivity(new Intent(getApplicationContext(), Configuracion.class));
+                    //finish();
+                    progressDialog.dismiss();
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(DetalleEvento1.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                }
+            }){
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> params=new HashMap<>();
+                    params.put("id_usuario",id);
+                    params.put("id_evento",codiguin);
+                    params.put("clave",clavecita);
+
+
+                    return params;
+                }
+            };
+            //RequestQueue requestQueue= Volley.newRequestQueue(Codigo_QR_invitado.this);
+            //requestQueue.add(request);
+            VolleySingleton.getInstance(this).addToRequestQueue(request);
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(request);
+
+        }
+    }
+
 
     public static String encriptar(String code) throws Exception{
         KeyGenerator KeyGenerator = javax.crypto.KeyGenerator.getInstance(AES);

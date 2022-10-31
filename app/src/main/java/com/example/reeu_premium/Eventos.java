@@ -49,7 +49,11 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
     SwipeRefreshLayout swipeRefreshLayout;
 
     public static ArrayList<EventosClass> usuariosArrayList3=new ArrayList<>();
+
     public static ArrayList<EventosClass> usuariosArrayList4=new ArrayList<>();
+
+
+
     String url="https://polar-cove-80223.herokuapp.com/estacionamientos.php";
     EventosClass EventosClass;
 
@@ -63,6 +67,8 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eventos);
         queue = Volley.newRequestQueue(this);
+
+
 
         listView=findViewById(lisMostraMisEventos);
         adapter3= new Adapter3(this,usuariosArrayList3);
@@ -144,6 +150,11 @@ public class Eventos extends AppCompatActivity implements View.OnClickListener{
         //leerJSON2();
         userLogin2();
         invitado();
+
+
+
+        System.out.println("datos de mi listaaaaaaaaaaaaaaaaaaaaaaaa");
+        System.out.println(usuariosArrayList3);
 /*
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()){

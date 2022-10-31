@@ -3,6 +3,7 @@ package com.example.reeu_premium;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -84,22 +85,25 @@ public class Login extends AppCompatActivity {
         final String password = etPassword.getText().toString();
         //validating inputs
         if (TextUtils.isEmpty(username)) {
-            etName.setError("Please enter your username");
+            etName.setError("Por favor ingrese su usuario");
             etName.requestFocus();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError("Please enter your password");
+            etPassword.setError("Por favor ingrese su contraseña");
             etPassword.requestFocus();
             return;
         }
+
+        final ProgressDialog loading = ProgressDialog.show(this, "Iniciando Sesión...", "Espere por favor");
 
         //if everything is fine
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_LOGIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        loading.dismiss();
                         try {
                             //converting response to json object
                             JSONObject obj = new JSONObject(response);

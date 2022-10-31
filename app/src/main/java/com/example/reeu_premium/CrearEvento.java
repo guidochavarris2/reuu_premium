@@ -275,6 +275,46 @@ public class CrearEvento extends AppCompatActivity {
 
     private void registerUser() {
 
+        final String nombre1 = editTextNombre.getText().toString().trim();
+        final String descripcion1 = editTextDescripcion.getText().toString().trim();
+        final String ubicacion1 = editTextUbicacion.getText().toString().trim();
+        final String fecha1 = editTextFecha.getText().toString().trim();
+        final String hora1 = editTextHora.getText().toString().trim();
+        final String aforo1 = editTextAforo.getText().toString().trim();
+
+        if (TextUtils.isEmpty(nombre1)) {
+            editTextNombre.setError("Por favor ingrese el nombre del evento");
+            editTextNombre.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(descripcion1)) {
+            editTextDescripcion.setError("Por favor ingrese una descripción para el evento");
+            editTextDescripcion.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(ubicacion1)) {
+            editTextUbicacion.setError("Por favor ingrese la ubicación del evento");
+            editTextUbicacion.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(fecha1)) {
+            editTextFecha.setError("Por favor ingrese la fecha del evento");
+            editTextFecha.requestFocus();
+            return;
+        }else{
+            editTextFecha.clearFocus();
+        }
+        if (TextUtils.isEmpty(hora1)) {
+            editTextHora.setError("Por favor ingresa la hora del evento");
+            editTextHora.requestFocus();
+            return;
+        }
+        if (TextUtils.isEmpty(aforo1)) {
+            editTextAforo.setError("Por favor ingresa el aforo del evento");
+            editTextAforo.requestFocus();
+            return;
+        }
+
 
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
 
@@ -292,6 +332,8 @@ public class CrearEvento extends AppCompatActivity {
         final String ubicacion = editTextUbicacion.getText().toString().trim();
         final String imagen = editImagen;
         final String gender = ((RadioButton) findViewById(radioGroupEstado.getCheckedRadioButtonId())).getText().toString();
+
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_CREAR,
                 new Response.Listener<String>() {

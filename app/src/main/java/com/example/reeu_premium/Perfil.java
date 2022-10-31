@@ -1,11 +1,14 @@
 package com.example.reeu_premium;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class Perfil extends AppCompatActivity implements View.OnClickListener{
@@ -45,9 +48,10 @@ public class Perfil extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-    public void onClick(View view){
+   public void onClick(View view){
         if(view.equals(btnLogout)){
             SharedPrefManager.getInstance(getApplicationContext()).logout();
         }
     }
+
 }
