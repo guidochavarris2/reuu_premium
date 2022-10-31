@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
         userLogin3();
 
+
+
         //cargargarImagen();
         /*recyclerView=findViewById(R.id.recy);
         recyclerView.setHasFixedSize(true);
@@ -184,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
         imageSlider.setImageList(images, ScaleTypes.CENTER_CROP);
 
     }
+
+
 
 
 
