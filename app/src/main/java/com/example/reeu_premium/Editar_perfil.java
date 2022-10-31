@@ -28,9 +28,7 @@ import java.util.Map;
 
 public class Editar_perfil extends AppCompatActivity {
 
-
-    TextView edid, eddni, edapellidos, edgender;
-    EditText edemail, eduserName, edpassword;
+    EditText edemail, edpassword, edtelefono, eddireccion, edid, eddni, edapellidos, edgender,eduserName;
 
     private int position;
 
@@ -41,16 +39,18 @@ public class Editar_perfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_perfil);
+
         if(SharedPrefManager.getInstance(this).isLoggedIn()) {
 
-
-            edid = findViewById(R.id.editTextId);
+            edid = findViewById(R.id.textViewId);
             eddni = findViewById(R.id.editTextDni);
             eduserName = findViewById(R.id.editTextUsername);
             edapellidos = findViewById(R.id.editTextApellidos);
             edemail = findViewById(R.id.editTextEmail);
             edpassword = findViewById(R.id.editTextPassword);
             edgender = findViewById(R.id.editTextGenero);
+            edtelefono = findViewById(R.id.editTextTelefono);
+            eddireccion = findViewById(R.id.editTextDireccion);
 
 
             User user = SharedPrefManager.getInstance(this).getUser();
@@ -60,9 +60,7 @@ public class Editar_perfil extends AppCompatActivity {
             eduserName.setText(user.getName());
             edapellidos.setText(user.getApellidos());
             edemail.setText(user.getEmail());
-
             edgender.setText(user.getGender());
-
 
 
         }
@@ -78,6 +76,8 @@ public class Editar_perfil extends AppCompatActivity {
         final String email=edemail.getText().toString().trim();
         final String password=edpassword.getText().toString().trim();
         final String genero=edgender.getText().toString().trim();
+        final String telefono=edtelefono.getText().toString().trim();
+        final String direccion=eddireccion.getText().toString().trim();
 
 
         final ProgressDialog progressDialog =new ProgressDialog(this);
@@ -89,8 +89,6 @@ public class Editar_perfil extends AppCompatActivity {
             public void onResponse(String response) {
                 Toast.makeText(Editar_perfil.this, response, Toast.LENGTH_SHORT).show();
 
-                System.out.println(response);
-
                 startActivity(new Intent(getApplicationContext(), Configuracion.class));
                 finish();
                 progressDialog.dismiss();
@@ -101,18 +99,24 @@ public class Editar_perfil extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(Editar_perfil.this,error.getMessage(),Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
+
             }
+
         }){
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<>();
+
                 params.put("dni",dni);
                 params.put("username",username);
                 params.put("apellidos",apellidos);
                 params.put("email",email);
                 params.put("password",password);
                 params.put("gender",genero);
+                params.put("telefono",telefono);
+                params.put("direccion",direccion);
+
                 params.put("id_usuario",id);
 
                 return params;
@@ -121,5 +125,6 @@ public class Editar_perfil extends AppCompatActivity {
         RequestQueue requestQueue= Volley.newRequestQueue(Editar_perfil.this);
         requestQueue.add(request);
     }
+
 
 }
