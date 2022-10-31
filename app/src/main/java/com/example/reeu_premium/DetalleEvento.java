@@ -1,9 +1,11 @@
 package com.example.reeu_premium;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,15 +16,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -34,12 +43,16 @@ public class DetalleEvento extends AppCompatActivity {
     String dato1;
     String dato2;
     String combo;
+    String codiguero;
+    TextView codigo;
 
     private static final String AES = "AES";
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        codigo = (TextView) findViewById(R.id.txtCodigo);
 
         setContentView(R.layout.activity_detalle_evento);
         EditText Descripcion = findViewById(R.id.txtDescripcion);
@@ -52,6 +65,10 @@ public class DetalleEvento extends AppCompatActivity {
         TextView Estado = findViewById(R.id.txtEstadoEvento);
         TextView Nombre = findViewById(R.id.txtnombreEvento);
         TextView Codigo = findViewById(R.id.txtCodigo);
+
+
+        System.out.println("gaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        System.out.println(Codigo);
 
         ImageView imagen = findViewById(R.id.imageEvento);
 
@@ -79,7 +96,9 @@ public class DetalleEvento extends AppCompatActivity {
                                     combo = encriptar(combo);
 
                                     Intent e = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);
+                                    //e.putExtra("codigo", codigo.getText());
                                     e.putExtra("hashqr", combo);
+                                    agregado();
                                     startActivity(e);
                                 }catch (Exception e){
                                     e.printStackTrace();
@@ -91,6 +110,64 @@ public class DetalleEvento extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void agregado() {
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+
+            User user = SharedPrefManager.getInstance(this).getUser();
+            final String id = String.valueOf(user.getId());
+            //final String codiguin = String.valueOf();
+            final String codiguin = dato2;
+            final String clavecita = combo;
+
+            //final String username = .getText().toString();
+            //final String clavecita = clave;
+
+
+            //final ProgressDialog progressDialog =new ProgressDialog(this);
+
+            //progressDialog.setMessage("Actualizando");
+            //progressDialog.dismiss();
+
+            StringRequest request =new StringRequest(Request.Method.POST, URLs.URL_INGRESAR2, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(DetalleEvento.this, response, Toast.LENGTH_SHORT).show();
+
+                    System.out.println(response);
+
+                    //startActivity(new Intent(getApplicationContext(), Configuracion.class));
+                    //finish();
+                    //progressDialog.dismiss();
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(DetalleEvento.this,error.getMessage(),Toast.LENGTH_SHORT).show();
+                    //progressDialog.dismiss();
+                }
+            }){
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String,String> params=new HashMap<>();
+                    params.put("id_usuario",id);
+                    params.put("id_evento",codiguin);
+                    params.put("clave",clavecita);
+
+
+                    return params;
+                }
+            };
+            //RequestQueue requestQueue= Volley.newRequestQueue(Codigo_QR_invitado.this);
+            //requestQueue.add(request);
+            VolleySingleton.getInstance(this).addToRequestQueue(request);
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(request);
+
+        }
     }
     public static String encriptar(String code) throws Exception{
         KeyGenerator KeyGenerator = javax.crypto.KeyGenerator.getInstance(AES);
