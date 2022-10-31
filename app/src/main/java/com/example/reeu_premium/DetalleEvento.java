@@ -32,11 +32,13 @@ public class DetalleEvento extends AppCompatActivity {
     String dato1;
     String dato2;
     String combo;
+
     private static final String AES = "AES";
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_detalle_evento);
         EditText Descripcion = findViewById(R.id.txtDescripcion);
         EditText Ubicacion = findViewById(R.id.txtubicacion);
@@ -54,6 +56,8 @@ public class DetalleEvento extends AppCompatActivity {
         Button ingreso = findViewById(R.id.btnIngreso);
 
         recibirdetalles();
+
+
 
         ingreso.setOnClickListener(new View.OnClickListener() {
             @Override
