@@ -293,14 +293,9 @@ public class MainActivity extends AppCompatActivity {
 
                                         System.out.println(id + ", " + codigo + ", " + categoria);
 
-
-
                                         usuarios = new Usuarios(id,codigo, categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
                                         usuariosArrayList2.add(usuarios);
-
-
                                     }
-
                                     Adapter adapter = new Adapter(MainActivity.this, productosList, new RecyclerViewAdapter.ItemClickListener() {
                                         @Override
                                         public void onItemClick(Usuarios item) {
@@ -338,17 +333,10 @@ public class MainActivity extends AppCompatActivity {
                     return params;
                 }
             };
-
             VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
             Volley.newRequestQueue(this).add(stringRequest);
-
-
         }
     }
-
-
-
-
     private HashMap<String, Object> getHashMapFromJson(String json) throws JSONException {
         HashMap<String, Object> map = new HashMap<String, Object>();
         JSONObject jsonObject = new JSONObject(json);

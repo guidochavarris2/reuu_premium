@@ -123,21 +123,6 @@ public class DetalleEventoAdmin extends AppCompatActivity {
     ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
         if(result.getContents() !=null)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(DetalleEventoAdmin.this);
-            builder.setTitle("Resultado");
-            builder.setMessage(result.getContents());
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    dialogInterface.dismiss();
-                }
-            }).show();
-        }
-    });
-
-    protected void ScannerResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null){
             if(result.getContents() == null) {
                 Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show();
             } else {
@@ -155,8 +140,18 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                     }
                 }
             }
+
+            /*AlertDialog.Builder builder = new AlertDialog.Builder(DetalleEventoAdmin.this);
+            builder.setTitle("Resultado");
+            builder.setMessage(result.getContents());
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            }).show();*/
         }
-    }
+    });
 
     public void recibirdetalles() {
         Bundle extras = getIntent().getExtras();
