@@ -1,13 +1,17 @@
 package com.example.reeu_premium;
 
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
 
+import java.io.Serializable;
 import java.util.List;
 import com.android.volley.toolbox.ImageLoader;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,7 +43,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder Viewholder, int position) {
-
         Usuarios dataAdapterOBJ =  dataAdapters.get(position);
 
         imageLoader = ImageAdapter.getInstance(context).getImageLoader();
@@ -51,11 +54,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         android.R.drawable.ic_dialog_alert //Error image if requested image dose not found on server.
                 )
         );
-
         Viewholder.VollyImageView.setImageUrl(dataAdapterOBJ.getCodigo(), imageLoader);
-
         Viewholder.ImageTitleTextView.setText(dataAdapterOBJ.getId());
-
     }
 
     @Override
@@ -63,7 +63,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         return dataAdapters.size();
     }
-
+    public interface ItemClickListener {
+        void onItemClick(Usuarios item);
+    }
     class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView ImageTitleTextView;
@@ -76,7 +78,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             ImageTitleTextView = (TextView) itemView.findViewById(R.id.ImageNameTextView) ;
 
             VollyImageView = (NetworkImageView) itemView.findViewById(R.id.VolleyImageView) ;
-
         }
+
     }
 }

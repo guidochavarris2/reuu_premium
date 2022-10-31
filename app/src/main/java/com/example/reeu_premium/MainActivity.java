@@ -1,19 +1,15 @@
 package com.example.reeu_premium;
 
-import static com.android.volley.Request.Method.GET;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -24,7 +20,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.denzcoskun.imageslider.ImageSlider;
@@ -42,12 +37,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     ImageSlider imageSlider;
     //Adapter2 adapter2;
-    Adapter adapter2;
+    //Adapter adapter2;
 
 
     List<Usuarios>productosList;
@@ -180,163 +175,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         }*/
 
-    //agregando slider de imagenes
-    ArrayList<SlideModel> images = new ArrayList<>();
+        //agregando slider de imagenes
+        ArrayList<SlideModel> images = new ArrayList<>();
         images.add(new SlideModel(R.drawable.cumple, null));
         images.add(new SlideModel(R.drawable.conferencia, null));
         images.add(new SlideModel(R.drawable.concierto, null));
         images.add(new SlideModel(R.drawable.compromisos, null));
-    imageSlider.setImageList(images, ScaleTypes.CENTER_CROP);
+        imageSlider.setImageList(images, ScaleTypes.CENTER_CROP);
 
     }
 
 
-
-    private void userLogin2() {
-        //first getting the values
-
-        String principal = new String();
-        if(SharedPrefManager.getInstance(this).isLoggedIn()){
-
-
-            User user = SharedPrefManager.getInstance(this).getUser();
-
-            final String id = String.valueOf(user.getId());
-
-            //principal.append(id);
-
-
-            System.out.println("este es mi iddddddddddddddddddddddddddddd");
-            System.out.println(id);
-
-            final String username = "GUIDO";
-            final String password = "dovermori";
-            //final Integer id = 1;
-            //final String id = principal;
-            //final StringBuffer id = principal;
-
-
-            //validating inputs
-            if (TextUtils.isEmpty(username)) {
-
-                return;
-            }
-
-            if (TextUtils.isEmpty(password)) {
-
-                return;
-            }
-
-            //if everything is fine
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_PUBLICO,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            //progressBar.setVisibility(View.GONE);
-
-                            try {
-                                //converting response to json object
-                                JSONObject obj = new JSONObject(response);
-
-                                //if no error in response
-                                if (!obj.getBoolean("error")) {
-                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                    //JSONArray agenteJSON=response.getJSONArray("datos");
-                                    //getting the user from the response
-
-                                    System.out.println("esta vainaaaaaaaaaaaaaaaaaa");
-                                    System.out.println(obj);
-                                    //JSONObject userJson = obj.getJSONObject("nodo");
-                                    JSONArray userJson=obj.getJSONArray("nodo");
-
-                                    System.out.println("ESTE ES EL JSONUSUARIO");
-
-                                    System.out.println(userJson);
-
-
-                                    for (int i = 0; i < userJson.length(); i++) {
-
-                                        String numcadena = String.valueOf(i);
-
-                                        JSONObject animal = userJson.getJSONObject(i);
-
-                                        String id = animal.getString("nombre");
-                                        String id_evento = animal.getString("id_evento");
-                                        String fecha = animal.getString("fecha");
-                                        String hora = animal.getString("hora");
-                                        String ubicacion = animal.getString("ubicacion");
-                                        String imagen = animal.getString("imagen");
-                                        String estado = animal.getString("estado");
-                                        String tipo_evento = animal.getString("id_tipo_evento");
-                                        String id_usuario = animal.getString("id_usuario");
-                                        //listaid.add(id);
-                                        String codigo = animal.getString("aforo");
-                                        String categoria = animal.getString("descripcion");
-
-                                        System.out.println(id + ", " + codigo + ", " + categoria);
-
-
-
-                                        usuarios = new Usuarios(id,codigo, categoria, id_evento, fecha, hora, ubicacion, imagen, estado, tipo_evento, id_usuario);
-                                        usuariosArrayList2.add(usuarios);
-                                        recyclerView.setAdapter(adapter2);
-                                        //adapter2.notifyDataSetChanged();
-
-                                    }
-
-                                    //creating a new user object
-                                /*
-                                User user = new User(
-                                        userJson.getInt("id"),
-                                        userJson.getString("username"),
-                                        userJson.getString("apellidos"),
-                                        userJson.getString("email"),
-                                        userJson.getString("dni"),
-                                        userJson.getString("gender")
-                                );*/
-
-
-                                    System.out.println("ggaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                                    System.out.println(userJson);
-
-                                    //storing the user in shared preferences
-                                    //SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-                                    //starting the profile activity
-                                    //finish();
-                                    //startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                                } else {
-                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    })
-            {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("username", username);
-                    params.put("password", password);
-                    params.put("id_usuario",id);
-                    //params.put("id", String.valueOf(id));
-                    //params.put("id",id);
-                    return params;
-                }
-            };
-
-            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-
-
-        }
-    }
 
 
     private void userLogin3() {
@@ -410,10 +259,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                                         productosList.add(new Usuarios(
-                                                Usuarios.getString("id_evento"),
-                                                Usuarios.getString("id_evento"),
                                                 Usuarios.getString("nombre"),
                                                 Usuarios.getString("id_evento"),
+                                                Usuarios.getString("descripcion"),
+                                                Usuarios.getString("aforo"),
                                                 Usuarios.getString("fecha"),
                                                 Usuarios.getString("hora"),
                                                 Usuarios.getString("ubicacion"),
@@ -444,10 +293,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         usuariosArrayList2.add(usuarios);
 
 
-                                        }
+                                    }
 
-                                        Adapter adapter = new Adapter(MainActivity.this, productosList);
-                                        recyclerView.setAdapter(adapter);
+                                    Adapter adapter = new Adapter(MainActivity.this, productosList, new RecyclerViewAdapter.ItemClickListener() {
+                                        @Override
+                                        public void onItemClick(Usuarios item) {
+                                            ToDetalleEvento(item);
+                                        }
+                                    });
+                                    recyclerView.setAdapter(adapter);
 
 
 
@@ -499,14 +353,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return map;
     }
 
-
-
-
-
-    public void onClick(View view){
-
-        /*if(view.equals(buttonLogout)){
-            SharedPrefManager.getInstance(getApplicationContext()).logout();
-        }*/
+    public void ToDetalleEvento(Usuarios item) {
+        Intent intent = new Intent(this, DetalleEvento.class);
+        intent.putExtra("item", item);
+        startActivity(intent);
     }
+
+
+
+   /* public void onClick(View view){
+
+        if(view.equals(buttonLogout)){
+            SharedPrefManager.getInstance(getApplicationContext()).logout();
+        }
+    }*/
 }

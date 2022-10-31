@@ -102,18 +102,7 @@ public class DetalleEvento extends AppCompatActivity {
 
 
     public void recibirdetalles() {
-        Bundle extras = getIntent().getExtras();
-        String id_evento = extras.getString("envio1");
-        String nombre = extras.getString("envio2");
-        String descripcion = extras.getString("envio3");
-        String aforo = extras.getString("envio4");
-        String fecha = extras.getString("envio5");
-        String hora = extras.getString("envio6");
-        String ubicacion = extras.getString("envio7");
-        String imagen = extras.getString("envio8");
-        //String estado = extras.getString("envio9");
-        String tipo_evento = extras.getString("envio10");
-        String id_usuario = extras.getString("envio11");
+        Usuarios element = (Usuarios) getIntent().getSerializableExtra("item");
 
         TextView nombree = findViewById(R.id.txtnombreEvento);
         EditText descripcione = findViewById(R.id.txtDescripcion);
@@ -124,19 +113,20 @@ public class DetalleEvento extends AppCompatActivity {
         EditText aforoe = findViewById(R.id.txtaforo);
         TextView estadoe = findViewById(R.id.txtEstadoEvento);
         TextView codigoe = findViewById(R.id.txtCodigo);
-        nombree.setText(nombre);
-        descripcione.setText(descripcion);
-        ubicacione.setText(ubicacion);
-        fechae.setText(fecha);
-        horae.setText(hora);
-        aforomaxe.setText(aforo);
+
+        nombree.setText(element.getId());
+        descripcione.setText(element.getCategoria());
+        ubicacione.setText(element.getubicacion());
+        fechae.setText(element.getfecha());
+        horae.setText(element.gethora());
+        aforomaxe.setText(element.getCodigo());
         aforoe.setText("0");
-        if(tipo_evento == "1"){
+        if(element.getestado() == "1"){
             estadoe.setText("Publico");
         }else{
             estadoe.setText("Privado");
         }
-        codigoe.setText(id_evento);
+        codigoe.setText(element.getid_evento());
 
         //EditText Deshabilitados
         descripcione.setEnabled(false);
