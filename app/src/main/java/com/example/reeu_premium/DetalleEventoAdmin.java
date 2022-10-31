@@ -42,7 +42,7 @@ public class DetalleEventoAdmin extends AppCompatActivity {
     QR_detector QR_detector;
 
     //String codigo_string = codigo.getText().toString();
-    public static ArrayList<com.example.reeu_premium.QR_detector> usuariosArrayListInvitado=new ArrayList<com.example.reeu_premium.QR_detector>();
+    public static ArrayList<com.example.reeu_premium.QR_detector> usuariosArrayListInvitadoqr=new ArrayList<com.example.reeu_premium.QR_detector>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class DetalleEventoAdmin extends AppCompatActivity {
         Hora.setEnabled(false);
         AforoMax.setEnabled(false);
         Aforo.setEnabled(false);
-
+        invitado();
         recibirdetalles();
 
 
@@ -118,38 +118,48 @@ public class DetalleEventoAdmin extends AppCompatActivity {
         options.setOrientationLocked(true);
         options.setCaptureActivity(CaptureAct.class);
         barLaucher.launch(options);
+
     }
 
     ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
         if(result.getContents() !=null)
         {
-            if(result.getContents() == null) {
-                Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show();
-            } else {
-                String scanqr = result.getContents();
-                invitado();
-                for (int i = 0; i < usuariosArrayListInvitado.size(); i++) {
-                    if (scanqr.equals( usuariosArrayListInvitado.get(i))){
-                        Intent a = new Intent(DetalleEventoAdmin.this, Entrada_exitosa.class);
-                        a.putExtra("scanqr", scanqr);
-                        startActivity(a);
-                    } else {
-                        Intent a = new Intent(DetalleEventoAdmin.this, Entrada_denegada.class);
-                        a.putExtra("scanqr", scanqr);
-                        startActivity(a);
-                    }
-                }
-            }
-
-            /*AlertDialog.Builder builder = new AlertDialog.Builder(DetalleEventoAdmin.this);
-            builder.setTitle("Resultado");
+            AlertDialog.Builder builder = new AlertDialog.Builder(DetalleEventoAdmin.this);
+            builder.setTitle("Entrada Correcta");
             builder.setMessage(result.getContents());
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
                 }
-            }).show();*/
+            }).show();
+            //String scanqr = result.getContents();
+            //System.out.println(scanqr);
+            /*for (int i = 0; i < usuariosArrayListInvitadoqr.size(); i++) {
+
+                System.out.println(usuariosArrayListInvitadoqr.size());
+
+                if (scanqr.equals( usuariosArrayListInvitadoqr.get(i))){
+                    Intent a = new Intent(DetalleEventoAdmin.this, Entrada_exitosa.class);
+                    a.putExtra("scanqr", scanqr);
+                    startActivity(a);
+                } else {
+                    Intent a = new Intent(DetalleEventoAdmin.this, Entrada_denegada.class);
+                    a.putExtra("scanqr", scanqr);
+                    startActivity(a);
+                }
+            }*/
+            /*
+            */
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(DetalleEventoAdmin.this);
+            builder.setTitle("Salio null");
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            }).show();
         }
     });
 
@@ -228,6 +238,7 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                             //progressBar.setVisibility(View.GONE);
+                            System.out.println(response);
 
                             try {
                                 //converting response to json object
@@ -245,13 +256,14 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                                     for (int i = 0; i < userJson.length(); i++) {
                                         JSONObject animal = userJson.getJSONObject(i);
                                         //String id = animal.getString("id");
+                                        String id = animal.getString("id_invitado_evento");
                                         String clave = animal.getString("clave");
 
                                         QR_detector  = new QR_detector(clave);
-                                        usuariosArrayListInvitado.add(QR_detector);
+                                        usuariosArrayListInvitadoqr.add(QR_detector);
                                     }
 
-                                    System.out.println("ggaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                                    System.out.println("holavhcgvgvhvhjvhvhvvhvvvvhbnhjvbhvvg");
                                     System.out.println(userJson);
 
                                 }
