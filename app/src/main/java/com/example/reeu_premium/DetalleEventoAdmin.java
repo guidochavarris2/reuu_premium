@@ -1,7 +1,10 @@
 package com.example.reeu_premium;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,6 +22,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.CaptureActivity;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +36,7 @@ import java.util.Map;
 
 public class DetalleEventoAdmin extends AppCompatActivity {
 
-    Button btnLista;
+    Button btnLista, btnValidar;
     String codigoa;
     TextView codigo;
     QR_detector QR_detector;
@@ -83,7 +89,7 @@ public class DetalleEventoAdmin extends AppCompatActivity {
             }**/
 
 
-
+        btnValidar=(Button)findViewById(R.id.btnValidarIngreso);
         btnLista=(Button)findViewById(R.id.btnLista);
 
         btnLista.setOnClickListener(new View.OnClickListener() {
@@ -99,17 +105,36 @@ public class DetalleEventoAdmin extends AppCompatActivity {
             }
         });
 
+        btnValidar.setOnClickListener(view -> {
+            scanCode();
+        });
+
     }
-    public void onClick(View view) {
-        if(view.getId() == R.id.btnValidarIngreso){
-            IntentIntegrator integrator = new IntentIntegrator(this);
-            integrator.setDesiredBarcodeFormats(IntentIntegrator.PDF_417);
-            integrator.setCameraId(0);  // Use a specific camera of the device
-            integrator.setOrientationLocked(true);
-            integrator.setBarcodeImageEnabled(false);
-            integrator.initiateScan();
+
+    private void scanCode() {
+        ScanOptions options = new ScanOptions();
+        options.setPrompt("Scanear tu código");
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        barLaucher.launch(options);
+    }
+
+    ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
+        if(result.getContents() !=null)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(DetalleEventoAdmin.this);
+            builder.setTitle("Resultado");
+            builder.setMessage(result.getContents());
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            }).show();
         }
-    }
+    });
+
     protected void ScannerResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null){
@@ -129,32 +154,6 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                         startActivity(a);
                     }
                 }
-
-
-
-            /*
-            if(result.getContents() == null) {
-                Toast.makeText(this, "Cancelado", Toast.LENGTH_LONG).show();
-            } else {
-                String scanqr = result.getContents();
-                boolean verif = true;
-
-
-
-
-                //falta codigo//
-
-
-
-                if(verif != true){
-                    Intent i = new Intent(DetalleEventoAdmin.this, Entrada_denegada.class);
-                    i.putExtra("scanqr", scanqr);
-                    startActivity(i);
-                } else {
-                    Intent i = new Intent(DetalleEventoAdmin.this, Entrada_exitosa.class);
-                    i.putExtra("scanqr", scanqr);
-                    startActivity(i);
-                }*/
             }
         }
     }
