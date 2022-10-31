@@ -11,6 +11,7 @@ public class Configuracion extends AppCompatActivity {
 
     Button tbnTerminos;
     Button btnPoliticas;
+    Button btnEditarPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,20 @@ public class Configuracion extends AppCompatActivity {
 
             }
         });
+
+        btnEditarPerfil=(Button)findViewById(R.id.btnEditarPerfil);
+
+        btnEditarPerfil.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                Intent nextScreen = new Intent(getApplicationContext(), Editar_perfil.class);
+                startActivity(nextScreen);
+
+            }
+        });
+
+
 
     }
 }
