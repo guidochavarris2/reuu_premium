@@ -260,9 +260,9 @@ public class MainActivity extends AppCompatActivity {
 
                                         productosList.add(new Usuarios(
                                                 Usuarios.getString("nombre"),
-                                                Usuarios.getString("id_evento"),
-                                                Usuarios.getString("descripcion"),
                                                 Usuarios.getString("aforo"),
+                                                Usuarios.getString("descripcion"),
+                                                Usuarios.getString("id_evento"),
                                                 Usuarios.getString("fecha"),
                                                 Usuarios.getString("hora"),
                                                 Usuarios.getString("ubicacion"),
