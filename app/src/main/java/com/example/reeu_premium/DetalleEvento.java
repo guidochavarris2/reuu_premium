@@ -1,8 +1,10 @@
 package com.example.reeu_premium;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -62,19 +64,31 @@ public class DetalleEvento extends AppCompatActivity {
         ingreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    buscarIDEvento();
-                    dato2 = Codigo.getText().toString().trim();
-                    combo = dato1 + dato2;
-                    System.out.println(dato1);
-                    combo = encriptar(combo);
+                AlertDialog.Builder alerta = new AlertDialog.Builder(DetalleEvento.this);
+                alerta.setTitle("Validación");
+                alerta.setMessage("Gracias por confirmar su participación en el evento")
+                        .setCancelable(false)
+                        .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                try {
+                                    buscarIDEvento();
+                                    dato2 = Codigo.getText().toString().trim();
+                                    combo = dato1 + dato2;
+                                    System.out.println(dato1);
+                                    combo = encriptar(combo);
 
-                    Intent i = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);
-                    i.putExtra("hashqr", combo);
-                    startActivity(i);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                                    Intent e = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);
+                                    e.putExtra("hashqr", combo);
+                                    startActivity(e);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+                alerta.create().show();
+
             }
         });
     }
