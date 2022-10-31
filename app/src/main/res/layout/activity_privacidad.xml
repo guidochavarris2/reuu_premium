@@ -37,16 +37,17 @@
                     android:id="@+id/terminos_condiciones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="   Políticas de privacidad   "
+                    android:text="Políticas de privacidad"
                     android:textColor="#fe5b52"
                     android:textSize="30sp"
+                    android:gravity="center"
+                    android:padding="10dp"
                     android:background="@drawable/white_background"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    tools:ignore="MissingConstraints" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
+            <me.biubiubiu.justifytext.library.JustifyTextView
                 android:id="@+id/textView13"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"

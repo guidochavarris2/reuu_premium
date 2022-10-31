@@ -1,19 +1,15 @@
 package com.example.reeu_premium;
 
-import static com.android.volley.Request.Method.GET;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -24,7 +20,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.denzcoskun.imageslider.ImageSlider;
@@ -42,7 +37,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     ImageSlider imageSlider;
@@ -180,13 +175,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         }*/
 
-    //agregando slider de imagenes
-    ArrayList<SlideModel> images = new ArrayList<>();
+        //agregando slider de imagenes
+        ArrayList<SlideModel> images = new ArrayList<>();
         images.add(new SlideModel(R.drawable.cumple, null));
         images.add(new SlideModel(R.drawable.conferencia, null));
         images.add(new SlideModel(R.drawable.concierto, null));
         images.add(new SlideModel(R.drawable.compromisos, null));
-    imageSlider.setImageList(images, ScaleTypes.CENTER_CROP);
+        imageSlider.setImageList(images, ScaleTypes.CENTER_CROP);
 
     }
 
@@ -264,10 +259,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
                                         productosList.add(new Usuarios(
-                                                Usuarios.getString("id_evento"),
-                                                Usuarios.getString("id_evento"),
                                                 Usuarios.getString("nombre"),
                                                 Usuarios.getString("id_evento"),
+                                                Usuarios.getString("descripcion"),
+                                                Usuarios.getString("aforo"),
                                                 Usuarios.getString("fecha"),
                                                 Usuarios.getString("hora"),
                                                 Usuarios.getString("ubicacion"),
@@ -298,10 +293,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         usuariosArrayList2.add(usuarios);
 
 
-                                        }
+                                    }
 
-                                        Adapter adapter = new Adapter(MainActivity.this, productosList);
-                                        recyclerView.setAdapter(adapter);
+                                    Adapter adapter = new Adapter(MainActivity.this, productosList, new RecyclerViewAdapter.ItemClickListener() {
+                                        @Override
+                                        public void onItemClick(Usuarios item) {
+                                            ToDetalleEvento(item);
+                                        }
+                                    });
+                                    recyclerView.setAdapter(adapter);
 
 
 
@@ -353,14 +353,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return map;
     }
 
-
-
-
-
-    public void onClick(View view){
-
-        /*if(view.equals(buttonLogout)){
-            SharedPrefManager.getInstance(getApplicationContext()).logout();
-        }*/
+    public void ToDetalleEvento(Usuarios item) {
+        Intent intent = new Intent(this, DetalleEvento.class);
+        intent.putExtra("item", item);
+        startActivity(intent);
     }
+
+
+
+   /* public void onClick(View view){
+
+        if(view.equals(buttonLogout)){
+            SharedPrefManager.getInstance(getApplicationContext()).logout();
+        }
+    }*/
 }

@@ -37,18 +37,19 @@
 
                 <TextView
                     android:id="@+id/terminos_condiciones"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/white_background"
-                    android:text="   Términos y condiciones   "
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="Términos y condiciones"
                     android:textColor="#fe5b52"
                     android:textSize="30sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    tools:ignore="MissingConstraints" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
+            <me.biubiubiu.justifytext.library.JustifyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -116,6 +117,25 @@ La empresa no será responsable en todo en caso de imposibilidad de prestar serv
 12. RESOLUCIÓN DE CONTROVERSIAS. LEY APLICABLE Y JURISDICCIÓN
 Las presentes Condiciones Generales de Uso, así como el uso del Espacio Web, se regirán por la legislación española. Para la resolución de cualquier controversia las partes se someterán a los Juzgados y Tribunales del domicilio social del Responsable del sitio web.En el supuesto de que cualquier estipulación de las presentes Condiciones Generales de Uso resultara inexigible o nula en virtud de la legislación aplicable o como consecuencia de una resolución judicial o administrativa, dicha inexigibilidad o nulidad no hará que las presentes Condiciones Generales de Uso resulten inexigibles o nulas en su conjunto. En dichos casos, la empresa procederá a la modificación o sustitución de dicha estipulación por otra que sea válida y exigible y que, en la medida de lo posible, consiga el objetivo y pretensión reflejados en la estipulación original." />
 
+            <Button
+                android:id="@+id/buttonRegister2"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="#F44336"
+                android:elevation="3dp"
+                android:text="Crear Evento"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
 
         </LinearLayout>
     </ScrollView>

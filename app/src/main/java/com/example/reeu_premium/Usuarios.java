@@ -1,6 +1,8 @@
 package com.example.reeu_premium;
 
-public class Usuarios {
+import java.io.Serializable;
+
+public class Usuarios implements Serializable {
 
 String id, codigo, categoria, id_evento, fecha, hora, ubicacion, imagen,estado, id_tipo_evento, id_usuario;
 

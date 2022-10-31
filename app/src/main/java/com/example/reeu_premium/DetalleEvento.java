@@ -1,8 +1,10 @@
 package com.example.reeu_premium;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -62,19 +64,31 @@ public class DetalleEvento extends AppCompatActivity {
         ingreso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    buscarIDEvento();
-                    dato2 = Codigo.getText().toString().trim();
-                    combo = dato1 + dato2;
-                    System.out.println(dato1);
-                    combo = encriptar(combo);
+                AlertDialog.Builder alerta = new AlertDialog.Builder(DetalleEvento.this);
+                alerta.setTitle("Validación");
+                alerta.setMessage("Gracias por confirmar su participación en el evento")
+                        .setCancelable(false)
+                        .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                try {
+                                    buscarIDEvento();
+                                    dato2 = Codigo.getText().toString().trim();
+                                    combo = dato1 + dato2;
+                                    System.out.println(dato1);
+                                    combo = encriptar(combo);
 
-                    Intent i = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);
-                    i.putExtra("hashqr", combo);
-                    startActivity(i);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                                    Intent e = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);
+                                    e.putExtra("hashqr", combo);
+                                    startActivity(e);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+                alerta.create().show();
+
             }
         });
     }
@@ -106,18 +120,7 @@ public class DetalleEvento extends AppCompatActivity {
 
 
     public void recibirdetalles() {
-        Bundle extras = getIntent().getExtras();
-        String id_evento = extras.getString("envio1");
-        String nombre = extras.getString("envio2");
-        String descripcion = extras.getString("envio3");
-        String aforo = extras.getString("envio4");
-        String fecha = extras.getString("envio5");
-        String hora = extras.getString("envio6");
-        String ubicacion = extras.getString("envio7");
-        String imagen = extras.getString("envio8");
-        //String estado = extras.getString("envio9");
-        String tipo_evento = extras.getString("envio10");
-        String id_usuario = extras.getString("envio11");
+        Usuarios element = (Usuarios) getIntent().getSerializableExtra("item");
 
         TextView nombree = findViewById(R.id.txtnombreEvento);
         EditText descripcione = findViewById(R.id.txtDescripcion);
@@ -128,19 +131,20 @@ public class DetalleEvento extends AppCompatActivity {
         EditText aforoe = findViewById(R.id.txtaforo);
         TextView estadoe = findViewById(R.id.txtEstadoEvento);
         TextView codigoe = findViewById(R.id.txtCodigo);
-        nombree.setText(nombre);
-        descripcione.setText(descripcion);
-        ubicacione.setText(ubicacion);
-        fechae.setText(fecha);
-        horae.setText(hora);
-        aforomaxe.setText(aforo);
+
+        nombree.setText(element.getId());
+        descripcione.setText(element.getCategoria());
+        ubicacione.setText(element.getubicacion());
+        fechae.setText(element.getfecha());
+        horae.setText(element.gethora());
+        aforomaxe.setText(element.getCodigo());
         aforoe.setText("0");
-        if(tipo_evento == "1"){
+        if(element.getestado() == "1"){
             estadoe.setText("Publico");
         }else{
             estadoe.setText("Privado");
         }
-        codigoe.setText(id_evento);
+        codigoe.setText(element.getid_evento());
 
         //EditText Deshabilitados
         descripcione.setEnabled(false);

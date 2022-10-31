@@ -18,10 +18,14 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.PlayerViewnHolder> {
 
     private Context mCtx;
     private List<Usuarios>productosList;
-    public Adapter(Context mCtx,List<Usuarios>productosList){
+    private RecyclerViewAdapter.ItemClickListener mItemClickListener;
+    public Adapter(Context mCtx, List<Usuarios> productosList, RecyclerViewAdapter.ItemClickListener itemClickListener){
         this.mCtx=mCtx;
         this.productosList=productosList;
+        this.mItemClickListener = itemClickListener;
     }
+
+
     @NonNull
     @Override
     public PlayerViewnHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,6 +36,7 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.PlayerViewnHolder> {
         return new PlayerViewnHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull PlayerViewnHolder holder, int position) {
         Usuarios productos=productosList.get(position);
@@ -40,6 +45,9 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.PlayerViewnHolder> {
                 .into(holder.img);
         holder.tv1.setText(productos.getCategoria());
         holder.tv2.setText(productos.getubicacion());
+        holder.itemView.setOnClickListener(view ->  {
+            mItemClickListener.onItemClick(productosList.get(position));
+        });
     }
 
 
@@ -48,6 +56,8 @@ public class Adapter  extends RecyclerView.Adapter<Adapter.PlayerViewnHolder> {
     public int getItemCount() {
         return productosList.size();
     }
+
+
 
     static class PlayerViewnHolder extends  RecyclerView.ViewHolder{
         TextView tv1,tv2;
