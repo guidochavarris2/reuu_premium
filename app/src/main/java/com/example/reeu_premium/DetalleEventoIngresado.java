@@ -1,13 +1,18 @@
 package com.example.reeu_premium;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.security.MessageDigest;
+import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -39,6 +44,7 @@ public class DetalleEventoIngresado extends AppCompatActivity {
         btnQR=(Button)findViewById(R.id.btnIngreso);
 
         codigo = (TextView) findViewById(R.id.txtCodigo);
+        buscarIDEvento();
         /*
 
         btnQR.setOnClickListener(new View.OnClickListener() {
@@ -56,19 +62,18 @@ public class DetalleEventoIngresado extends AppCompatActivity {
         });*/
 
         ingreso.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 try {
 
                     dato2 = Codigo.getText().toString().trim();
                     combo = dato1 + dato2;
-                    System.out.println(dato1);
-                    combo = encriptar(combo);
-
+                    String encrp = encriptar(combo, "reeupremium");
 
                     Intent i = new Intent(DetalleEventoIngresado.this, Codigo_QR_invitado.class);
                     i.putExtra("codigo", codigo.getText());
-                    i.putExtra("hashqr", combo);
+                    i.putExtra("hashqr", encrp);
 
                     startActivity(i);
                 }catch (Exception e){
@@ -78,16 +83,31 @@ public class DetalleEventoIngresado extends AppCompatActivity {
         });
     }
 
-    public static String encriptar(String code) throws Exception{
-        KeyGenerator KeyGenerator = javax.crypto.KeyGenerator.getInstance(AES);
-        KeyGenerator.init(128);
-        SecretKey secretKey = KeyGenerator.generateKey();
-        byte[] bytesSecretKey = secretKey.getEncoded();
-        SecretKeySpec secretKeySpec = new SecretKeySpec(bytesSecretKey, AES);
-        Cipher cipher = Cipher.getInstance(AES);
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-        byte[] encriptado = cipher.doFinal(code.getBytes());
-        return new String(encriptado);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String encriptar(String code, String pss) throws Exception{
+        SecretKeySpec secretKey = generateKey(pss);
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        byte[] datosEncriptadosBytes = cipher.doFinal(code.getBytes());
+        String datosEncriptadosString = Base64.getEncoder().encodeToString(datosEncriptadosBytes);
+        return datosEncriptadosString;
+    }
+    private SecretKeySpec generateKey(String pss) throws  Exception{
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+        byte[] key = pss.getBytes("UTF-8");
+        key = sha.digest(key);
+        SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+        return secretKey;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String desencriptar(String code, String pss) throws Exception{
+        SecretKeySpec secretKey = generateKey(pss);
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        byte[] datosDecodificados = Base64.getDecoder().decode(code);
+        byte[] datosDesencriptados = cipher.doFinal(datosDecodificados);
+        String datosDesencriptadosString = new String(datosDesencriptados);
+        return datosDesencriptadosString;
     }
 
     //usuario logueado DNI

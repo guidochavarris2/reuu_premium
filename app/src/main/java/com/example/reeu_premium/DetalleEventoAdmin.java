@@ -37,13 +37,13 @@ import java.util.Map;
 public class DetalleEventoAdmin extends AppCompatActivity {
 
     Button btnLista, btnValidar;
-    String codigoa;
+    String codigoa, igual;
+    int env;
     TextView codigo;
     QR_detector QR_detector;
 
     //String codigo_string = codigo.getText().toString();
     public static ArrayList<com.example.reeu_premium.QR_detector> usuariosArrayListInvitadoqr=new ArrayList<com.example.reeu_premium.QR_detector>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,11 +82,11 @@ public class DetalleEventoAdmin extends AppCompatActivity {
         //System.out.println(codigo_string);
 
         /**findViewById(R.id.lista_de_invitados).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(getApplicationContext(), Lista_invitados.class));
-            }**/
+        @Override
+        public void onClick(View view) {
+        finish();
+        startActivity(new Intent(getApplicationContext(), Lista_invitados.class));
+        }**/
 
 
         btnValidar=(Button)findViewById(R.id.btnValidarIngreso);
@@ -113,15 +113,17 @@ public class DetalleEventoAdmin extends AppCompatActivity {
 
     private void scanCode() {
         ScanOptions options = new ScanOptions();
-        options.setPrompt("Scanear tu código");
+        options.setPrompt("Scanear tu cÃ³digo");
         options.setBeepEnabled(true);
         options.setOrientationLocked(true);
         options.setCaptureActivity(CaptureAct.class);
         barLaucher.launch(options);
+        System.out.println("aqui tienes error?");
 
     }
 
     ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
+        System.out.println("esta ingresando aqui?");
         if(result.getContents() !=null)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(DetalleEventoAdmin.this);
@@ -133,24 +135,28 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                     dialogInterface.dismiss();
                 }
             }).show();
-            //String scanqr = result.getContents();
-            //System.out.println(scanqr);
-            /*for (int i = 0; i < usuariosArrayListInvitadoqr.size(); i++) {
+            String scanqr = result.getContents();
+            for (int i = 0; i < usuariosArrayListInvitadoqr.size(); i++) {
 
-                System.out.println(usuariosArrayListInvitadoqr.size());
 
-                if (scanqr.equals( usuariosArrayListInvitadoqr.get(i))){
-                    Intent a = new Intent(DetalleEventoAdmin.this, Entrada_exitosa.class);
-                    a.putExtra("scanqr", scanqr);
-                    startActivity(a);
-                } else {
-                    Intent a = new Intent(DetalleEventoAdmin.this, Entrada_denegada.class);
-                    a.putExtra("scanqr", scanqr);
-                    startActivity(a);
+                igual = usuariosArrayListInvitadoqr.get(i).getclave();
+                env = usuariosArrayListInvitadoqr.get(i).getid_usuario();
+                System.out.println(igual + " ------------------------------------- es el igual qlero");
+                if (scanqr.equals(igual)){
+                    break;
                 }
-            }*/
-            /*
-            */
+            }
+            if (scanqr.equals(igual)){
+                Intent a = new Intent(DetalleEventoAdmin.this, Entrada_exitosa.class);
+                System.out.println(env + " ------------------------------------- esto buscas pero se pierde???");
+                a.putExtra("scanqr", scanqr);
+                a.putExtra("env", env);
+                startActivity(a);
+            } else {
+                Intent a = new Intent(DetalleEventoAdmin.this, Entrada_denegada.class);
+                a.putExtra("scanqr", scanqr);
+                startActivity(a);
+            }
         } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(DetalleEventoAdmin.this);
             builder.setTitle("Salio null");
@@ -164,6 +170,7 @@ public class DetalleEventoAdmin extends AppCompatActivity {
     });
 
     public void recibirdetalles() {
+
         Bundle extras = getIntent().getExtras();
         String id_evento = extras.getString("envio1");
         String nombre = extras.getString("envio2");
@@ -184,9 +191,6 @@ public class DetalleEventoAdmin extends AppCompatActivity {
         EditText aforoe = findViewById(R.id.txtaforo);
         TextView estadoe = findViewById(R.id.txtEstadoEvento);
         TextView codigoe = findViewById(R.id.txtCodigo);
-
-        //System.out.println("fewfewfwooooooooooooooooooo");
-        //System.out.println(codigoe);
 
 
 
@@ -217,55 +221,102 @@ public class DetalleEventoAdmin extends AppCompatActivity {
 
         String principal = new String();
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
+
+
             User user = SharedPrefManager.getInstance(this).getUser();
+
             final String id = String.valueOf(user.getId());
+
+            //principal.append(id);
+
+
+            System.out.println("este es mi iddddddddddddddddddddddddddddd");
             System.out.println(id);
 
             final String username = "GUIDO";
             final String password = "dovermori";
-            final String codiguin = codigoa;
+            //final Integer id = 1;
+            //final String id = principal;
+            //final StringBuffer id = principal;
+
 
             //validating inputs
             if (TextUtils.isEmpty(username)) {
+
                 return;
             }
+
             if (TextUtils.isEmpty(password)) {
+
                 return;
             }
+
             //if everything is fine
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_USUARIOS_INVITADOS,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_VALIDACION,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             //progressBar.setVisibility(View.GONE);
-                            System.out.println(response);
 
                             try {
                                 //converting response to json object
                                 JSONObject obj = new JSONObject(response);
 
                                 //if no error in response
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                 if (!obj.getBoolean("error")) {
+                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                    //JSONArray agenteJSON=response.getJSONArray("datos");
+                                    //getting the user from the response
+
                                     System.out.println("esta vainaaaaaaaaaaaaaaaaaa");
                                     System.out.println(obj);
+                                    //JSONObject userJson = obj.getJSONObject("nodo");
                                     JSONArray userJson=obj.getJSONArray("nodo");
+
                                     System.out.println("ESTE ES EL JSONUSUARIO");
+
                                     System.out.println(userJson);
+
 
                                     for (int i = 0; i < userJson.length(); i++) {
+
+                                        String numcadena = String.valueOf(i);
+
                                         JSONObject animal = userJson.getJSONObject(i);
-                                        //String id = animal.getString("id");
-                                        String id = animal.getString("id_invitado_evento");
+
+                                        int id = animal.getInt("id_usuario");
                                         String clave = animal.getString("clave");
 
-                                        QR_detector  = new QR_detector(clave);
+
+                                        System.out.println(id + clave + "---------------------------------------------------------");
+
+                                        QR_detector = new QR_detector(id, clave);
                                         usuariosArrayListInvitadoqr.add(QR_detector);
+                                        //adapter4.notifyDataSetChanged();
                                     }
 
-                                    System.out.println("holavhcgvgvhvhjvhvhvvhvvvvhbnhjvbhvvg");
+                                    //creating a new user object
+                                /*
+                                User user = new User(
+                                        userJson.getInt("id"),
+                                        userJson.getString("username"),
+                                        userJson.getString("apellidos"),
+                                        userJson.getString("email"),
+                                        userJson.getString("dni"),
+                                        userJson.getString("gender")
+                                );*/
+
+
+                                    System.out.println("ggaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                                     System.out.println(userJson);
 
+                                    //storing the user in shared preferences
+                                    //SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
+                                    //starting the profile activity
+                                    //finish();
+                                    //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                } else {
+                                    Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -285,7 +336,9 @@ public class DetalleEventoAdmin extends AppCompatActivity {
                     Map<String, String> params = new HashMap<>();
                     params.put("username", username);
                     params.put("password", password);
-                    params.put("codigo",codiguin);
+                    params.put("id_usuario",id);
+                    //params.put("id", String.valueOf(id));
+                    //params.put("id",id);
                     return params;
                 }
             };
@@ -295,4 +348,6 @@ public class DetalleEventoAdmin extends AppCompatActivity {
 
         }
     }
+
+
 }

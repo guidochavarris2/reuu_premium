@@ -3,6 +3,7 @@ package com.example.reeu_premium;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -26,8 +28,13 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 public class Codigo_QR_invitado extends AppCompatActivity {
 
@@ -37,6 +44,7 @@ public class Codigo_QR_invitado extends AppCompatActivity {
     RequestQueue queue;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,17 +75,25 @@ public class Codigo_QR_invitado extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void recibirqr() {
         Bundle extras = getIntent().getExtras();
         String hash = extras.getString("hashqr");
         clave = hash;
+        System.out.println(hash + "  encriptado");
+        try {
+            hash = desencriptar(hash, "reeupremium");
+            System.out.println(hash + "  no encriptado");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //CREAR QR
         ImageView imgQR = findViewById(R.id.imageQR);
 
         try {
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.encodeBitmap(hash, BarcodeFormat.QR_CODE, 850, 850);
+            Bitmap bitmap = barcodeEncoder.encodeBitmap(clave, BarcodeFormat.QR_CODE, 850, 850);
 
             imgQR.setImageBitmap(bitmap);
         }catch (Exception e) {
@@ -85,6 +101,32 @@ public class Codigo_QR_invitado extends AppCompatActivity {
         }
         //CREAR QR
         //agregado();
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String encriptar(String code, String pss) throws Exception{
+        SecretKeySpec secretKey = generateKey(pss);
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        byte[] datosEncriptadosBytes = cipher.doFinal(code.getBytes());
+        String datosEncriptadosString = Base64.getEncoder().encodeToString(datosEncriptadosBytes);
+        return datosEncriptadosString;
+    }
+    private SecretKeySpec generateKey(String pss) throws  Exception{
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+        byte[] key = pss.getBytes("UTF-8");
+        key = sha.digest(key);
+        SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+        return secretKey;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String desencriptar(String code, String pss) throws Exception{
+        SecretKeySpec secretKey = generateKey(pss);
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        byte[] datosDecodificados = Base64.getDecoder().decode(code);
+        byte[] datosDesencriptados = cipher.doFinal(datosDecodificados);
+        String datosDesencriptadosString = new String(datosDesencriptados);
+        return datosDesencriptadosString;
     }
 
     private void agregado() {
