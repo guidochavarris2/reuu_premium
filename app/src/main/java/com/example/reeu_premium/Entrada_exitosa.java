@@ -30,6 +30,7 @@ import java.util.Map;
 
 public class Entrada_exitosa extends AppCompatActivity {
     User usuario;
+
     public static ArrayList<User> usuariosArrayList2=new ArrayList<>();
     private void invitado() {
         //first getting the values
@@ -129,7 +130,33 @@ public class Entrada_exitosa extends AppCompatActivity {
 */
 
                                     System.out.println("ggaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                                    Bundle extras = getIntent().getExtras();
+                                    int idp = extras.getInt("env");
+                                    String qr = extras.getString("scanqr");
+                                    int i;
+                                    for (i = 0; i < usuariosArrayList2.size(); i++) {
+                                        int hola = usuariosArrayList2.get(i).getId();
+                                        if (idp == hola){
+                                            break;
+                                        }
+                                    }
+                                    System.out.println(i);
                                     System.out.println(userJson);
+                                    TextView nom = findViewById(R.id.txtnombrebd);
+                                    TextView dni = findViewById(R.id.txtdnibd);
+                                    ImageView imgqr = findViewById(R.id.imageQR);
+
+                                    nom.setText(usuariosArrayList2.get(i).getName());
+                                    dni.setText(usuariosArrayList2.get(i).getDni());
+
+                                    try {
+                                        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                                        Bitmap bitmap = barcodeEncoder.encodeBitmap(qr, BarcodeFormat.QR_CODE, 850, 850);
+
+                                        imgqr.setImageBitmap(bitmap);
+                                    }catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
 
                                     //storing the user in shared preferences
                                     //SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
@@ -167,39 +194,12 @@ public class Entrada_exitosa extends AppCompatActivity {
 
         }
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrada_exitosa);
+
         invitado();
-        Bundle extras = getIntent().getExtras();
-        int id = extras.getInt("env");
-        String qr = extras.getString("scanqr");
-
-        System.out.println(id + "----------- id del usuario ---------");
-        System.out.println(qr + "----------- qr del usuario ---------");
-
-        TextView nom = findViewById(R.id.txtnombrebd);
-        TextView dni = findViewById(R.id.txtdnibd);
-        ImageView imgqr = findViewById(R.id.imageQR);
-
-        int position = usuariosArrayList2.indexOf(id);
-        System.out.println(position + "-----------se encontro ---------");
-        System.out.println(usuariosArrayList2);
-        //System.out.println(usuariosArrayList2.get(position).getName() + "-----------nombre ---------");
-        //System.out.println(usuariosArrayList2.get(position).getDni() + "-----------nombre ---------");
-
-        //nom.setText(usuariosArrayList2.get(position).getName());
-        //dni.setText(usuariosArrayList2.get(position).getDni());
-
-        try {
-            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-            Bitmap bitmap = barcodeEncoder.encodeBitmap(qr, BarcodeFormat.QR_CODE, 850, 850);
-
-            imgqr.setImageBitmap(bitmap);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 }

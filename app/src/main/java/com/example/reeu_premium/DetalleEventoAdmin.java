@@ -137,8 +137,6 @@ public class DetalleEventoAdmin extends AppCompatActivity {
             }).show();
             String scanqr = result.getContents();
             for (int i = 0; i < usuariosArrayListInvitadoqr.size(); i++) {
-
-
                 igual = usuariosArrayListInvitadoqr.get(i).getclave();
                 env = usuariosArrayListInvitadoqr.get(i).getid_usuario();
                 System.out.println(igual + " ------------------------------------- es el igual qlero");
