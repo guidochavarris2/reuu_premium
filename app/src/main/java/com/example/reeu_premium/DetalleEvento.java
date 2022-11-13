@@ -1,6 +1,7 @@
 package com.example.reeu_premium;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +32,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -86,18 +90,18 @@ public class DetalleEvento extends AppCompatActivity {
                 alerta.setMessage("Gracias por confirmar su participación en el evento")
                         .setCancelable(false)
                         .setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.O)
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 try {
                                     buscarIDEvento();
                                     dato2 = Codigo.getText().toString().trim();
                                     combo = dato1 + dato2;
-                                    System.out.println(dato1);
-                                    combo = encriptar(combo);
+                                    String encrp = encriptar(combo, "reeupremium");
 
                                     Intent e = new Intent(DetalleEvento.this, Codigo_QR_invitado.class);
-                                    //e.putExtra("codigo", codigo.getText());
-                                    e.putExtra("hashqr", combo);
+                                    e.putExtra("hashqr", encrp);
+                                    combo = encrp;
                                     agregado();
                                     startActivity(e);
                                 }catch (Exception e){
@@ -169,16 +173,31 @@ public class DetalleEvento extends AppCompatActivity {
 
         }
     }
-    public static String encriptar(String code) throws Exception{
-        KeyGenerator KeyGenerator = javax.crypto.KeyGenerator.getInstance(AES);
-        KeyGenerator.init(128);
-        SecretKey secretKey = KeyGenerator.generateKey();
-        byte[] bytesSecretKey = secretKey.getEncoded();
-        SecretKeySpec secretKeySpec = new SecretKeySpec(bytesSecretKey, AES);
-        Cipher cipher = Cipher.getInstance(AES);
-        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-        byte[] encriptado = cipher.doFinal(code.getBytes());
-        return new String(encriptado);
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String encriptar(String code, String pss) throws Exception{
+        SecretKeySpec secretKey = generateKey(pss);
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+        byte[] datosEncriptadosBytes = cipher.doFinal(code.getBytes());
+        String datosEncriptadosString = Base64.getEncoder().encodeToString(datosEncriptadosBytes);
+        return datosEncriptadosString;
+    }
+    private SecretKeySpec generateKey(String pss) throws  Exception{
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+        byte[] key = pss.getBytes("UTF-8");
+        key = sha.digest(key);
+        SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+        return secretKey;
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String desencriptar(String code, String pss) throws Exception{
+        SecretKeySpec secretKey = generateKey(pss);
+        Cipher cipher = Cipher.getInstance("AES");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        byte[] datosDecodificados = Base64.getDecoder().decode(code);
+        byte[] datosDesencriptados = cipher.doFinal(datosDecodificados);
+        String datosDesencriptadosString = new String(datosDesencriptados);
+        return datosDesencriptadosString;
     }
 
     //usuario logueado DNI

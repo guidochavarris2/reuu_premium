@@ -1,8 +1,8 @@
 package com.example.reeu_premium;
 
 public class User {
-    private int id;
-    private String name, apellidos, email, dni, gender;
+    int id;
+    String name, apellidos, email, dni, gender;
 
     public User(int id, String name, String apellidos, String email, String dni, String gender) {
         this.id = id;

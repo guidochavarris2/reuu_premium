@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("guidooooooooooooooooooooooooooooooooooooooooooooo");
         //System.out.println(databaseList());
+        System.out.println(usuariosArrayList2);
         productosList.clear();
         userLogin3();
 

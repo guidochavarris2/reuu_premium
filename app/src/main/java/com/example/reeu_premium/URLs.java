@@ -16,6 +16,6 @@ public class URLs {
     public static final String URL_INGRESAR2 = "https://polar-cove-80223.herokuapp.com/ingresar.php";
     public static final String URL_EDITAR = ROOT_EDITAR;
     public static final String URL_CREAR = ROOT_URL_AZURE + "crear";
-
-
+    public static final String URL_VALIDACION = ROOT_URL + "validacion";
+    public static final String URL_USUARIOSENTRADA = ROOT_URL + "Usuarios";
 }
