@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     //Adapter2 adapter2;
     //Adapter adapter2;
 
+    Adapter adapter;
+
 
     List<Usuarios>productosList;
 
@@ -78,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         productosList=new ArrayList<>();
 
+
+        //databaseList();
+
+        //usuariosArrayList2.clear();
+
+        System.out.println("guidooooooooooooooooooooooooooooooooooooooooooooo");
+        //System.out.println(databaseList());
+        productosList.clear();
         userLogin3();
 
 
@@ -186,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
         imageSlider.setImageList(images, ScaleTypes.CENTER_CROP);
 
     }
+
+
 
 
 
@@ -303,6 +315,8 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     });
                                     recyclerView.setAdapter(adapter);
+
+                                    adapter.notifyDataSetChanged();
 
 
 
