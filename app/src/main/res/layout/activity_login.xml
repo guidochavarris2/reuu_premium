@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="200dp"
-        android:text="Nombre"
+        android:text="DNI"
         android:textColor="#786be5"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -115,26 +115,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvregister">
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/facebook" />
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/google" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/twitter" />
     </LinearLayout>
 
     <Button

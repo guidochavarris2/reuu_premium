@@ -125,12 +125,16 @@
                     android:ems="10"
                     android:gravity="center|start"
                     android:hint="Fecha"
-                    android:inputType="date"
+                    android:inputType="none"
                     android:lines="2"
                     android:padding="10dp"
                     android:textColor="#7a7a7a"
                     android:textSize="18sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    android:focusable="false"
+                    android:textIsSelectable="false"
+                    android:clickable="true"
+                    />
 
                 <EditText
                     android:id="@+id/txthora"
@@ -144,12 +148,16 @@
                     android:ems="10"
                     android:gravity="center|start"
                     android:hint="Hora"
-                    android:inputType="datetime"
+                    android:inputType="none"
                     android:lines="2"
                     android:padding="10dp"
                     android:textColor="#7a7a7a"
                     android:textSize="18sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    android:focusable="false"
+                    android:textIsSelectable="false"
+                    android:clickable="true"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -192,7 +200,12 @@
                     android:padding="10dp"
                     android:textColor="#7a7a7a"
                     android:textSize="18sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold|italic"
+                    android:focusable="false"
+                    android:textIsSelectable="false"
+                    android:clickable="true"
+                    android:inputType="none"
+                    />
 
             </LinearLayout>
 

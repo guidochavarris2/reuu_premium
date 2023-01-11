@@ -6,20 +6,14 @@
     android:layout_height="match_parent"
     android:background="#EDE7F8">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="32dp"
-            android:paddingEnd="32dp">
+            android:paddingStart="3dp"
+            android:paddingEnd="6dp">
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -46,20 +40,25 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <!-- conevertir en un reciclerview o algo lisMostraMisEventos-->
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="250dp">
-                <ListView
-                    android:id="@+id/lisMostraMisEventos"
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="200dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recy1"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="3dp">
 
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="1dp"
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </RelativeLayout>
 
 
-
-                    android:layout_height="wrap_content" />
-            </ScrollView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -78,24 +77,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="250dp">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="350dp">
 
-                <ListView
-                    android:id="@+id/lisMostrarEntradas"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recy2"
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="1dp"
-                    android:layout_marginRight="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="3dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="3dp">
 
+                </androidx.recyclerview.widget.RecyclerView>
 
-
-                    android:layout_height="wrap_content" />
-
-
-            </ScrollView>
+            </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"

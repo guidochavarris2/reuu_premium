@@ -3,15 +3,15 @@ plugins {
 }
 
 android {
-    namespace 'com.example.reeu_premium'
+    namespace 'com.reeu.reeu_premium'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.reeu_premium"
+        applicationId "com.reeu.reeu_premium"
         minSdk 24
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,8 +48,12 @@ dependencies {
     //slide images
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //codigo QR
     implementation "com.journeyapps:zxing-android-embedded:4.3.0"
+
+    //reciclerView
+    implementation "androidx.recyclerview:recyclerview:1.2.0"
 
 }

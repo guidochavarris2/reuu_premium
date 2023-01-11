@@ -27,8 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="32dp"
-            android:paddingEnd="32dp">
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -51,8 +51,9 @@
             <ListView
                 android:id="@+id/ListViewInvitado"
                 android:layout_marginTop="10dp"
+
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="600dp" />
 
 
         </LinearLayout>
